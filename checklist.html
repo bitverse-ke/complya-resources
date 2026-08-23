@@ -431,6 +431,326 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+
+  @media screen {
+    /* ===== BASE ===== */
+    body {
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0 0 64px;
+      background: #F8F4E9;
+      overflow-x: hidden;
+    }
+    /* Sticky nav already exists at top of body */
+
+    /* ===== COVER (web hero) ===== */
+    section.cover {
+      width: 100vw;
+      height: auto;
+      min-height: 80vh;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-bottom: 64px;
+      background: #0a0a0a;
+      color: white;
+      overflow: hidden;
+      padding: 0;
+    }
+    section.cover .content {
+      position: relative;
+      inset: auto;
+      padding: 72px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 78vh;
+    }
+    section.cover .brand {
+      font-size: 14px;
+      letter-spacing: 0.22em;
+    }
+    section.cover h1 {
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 1.05;
+      margin: 0 0 28px;
+    }
+    section.cover .subtitle {
+      font-size: 22px;
+      line-height: 1.45;
+      max-width: 640px;
+    }
+    section.cover .meta {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      padding-top: 24px;
+    }
+
+    /* ===== CONTENT SECTIONS ===== */
+    section.content {
+      max-width: 780px;
+      margin: 0 auto 56px;
+      padding: 48px 24px;
+    }
+    section.content h2 {
+      font-size: 38px;
+      line-height: 1.15;
+      margin: 0 0 24px;
+      padding-bottom: 16px;
+    }
+    section.content h3 {
+      font-size: 22px;
+      line-height: 1.3;
+      margin: 32px 0 12px;
+    }
+    section.content p {
+      margin: 0 0 18px;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    section.content ol, section.content ul {
+      margin: 16px 0 24px 24px;
+      font-size: 17px;
+    }
+    section.content li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    section.content .callout {
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    section.content .callout strong {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+    }
+    section.intro {
+      padding-top: 8px;
+    }
+    section.intro h2 {
+      font-size: 44px;
+      line-height: 1.1;
+      margin: 0 0 24px;
+    }
+    section.intro p.lede {
+      font-size: 22px;
+      line-height: 1.5;
+      margin: 0 0 24px;
+    }
+
+    /* ===== DIVIDERS (web full-bleed sections) ===== */
+    section.divider {
+      width: 100vw;
+      height: auto;
+      min-height: 560px;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-top: 64px;
+      margin-bottom: 64px;
+      padding: 0;
+      background: var(--green);
+      color: white;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    section.divider .label {
+      position: relative;
+      z-index: 2;
+    }
+    section.divider .photo-strip {
+      z-index: 1;
+      opacity: 0.7;
+    }
+    section.divider .num {
+      position: absolute;
+      top: -40px;
+      right: -10px;
+      font-size: 380px;
+      line-height: 0.85;
+      opacity: 0.6;
+    }
+    section.divider .label {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      padding: 80px 56px;
+      max-width: 760px;
+    }
+    section.divider .step {
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      margin-bottom: 24px;
+    }
+    section.divider h2 {
+      font-size: clamp(40px, 5.5vw, 64px);
+      line-height: 1.08;
+      max-width: 680px;
+    }
+    section.divider .photo-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+    }
+
+    /* ===== QUICKCARD (web) ===== */
+    section.quickcard {
+      width: auto !important;
+      height: auto !important;
+      max-width: 880px;
+      position: relative;
+      margin: 64px auto;
+      padding: 56px 56px 72px;
+      background: var(--paper);
+      border: 2px dashed var(--green);
+      border-radius: 8px;
+    }
+    section.quickcard h2 {
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+    section.quickcard .sub {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+    }
+    section.quickcard ol.steps {
+      margin: 0 0 32px;
+    }
+    section.quickcard ol.steps li {
+      gap: 20px;
+      padding: 20px 0;
+    }
+    section.quickcard ol.steps li::before {
+      flex: 0 0 64px;
+      height: 64px;
+      font-size: 36px;
+      border-radius: 6px;
+    }
+    section.quickcard ol.steps .step-title {
+      font-size: 20px;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    section.quickcard ol.steps .step-desc {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    section.quickcard .check-box {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      margin-top: 4px;
+    }
+    section.quickcard .footer {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      margin-top: 32px;
+      padding-top: 24px;
+      font-size: 13px;
+    }
+
+    /* ===== BACK COVER ===== */
+    section.back {
+      width: 100vw;
+      height: auto;
+      min-height: 60vh;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-top: 64px;
+      margin-bottom: 0;
+      padding: 0;
+      background: var(--green);
+      color: white;
+    }
+    section.back .content {
+      position: relative;
+      inset: auto;
+      padding: 80px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 60vh;
+    }
+    section.back .brand {
+      font-size: 14px;
+      letter-spacing: 0.22em;
+    }
+    section.back h2 {
+      font-size: clamp(40px, 5vw, 56px);
+      line-height: 1.1;
+      margin: 0 0 24px;
+    }
+    section.back p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 560px;
+    }
+    section.back .cta {
+      font-size: 18px;
+      padding: 18px 32px;
+      margin-top: 24px;
+      border-radius: 4px;
+    }
+    section.back .url {
+      font-size: 16px;
+      margin-top: 12px;
+    }
+    section.back .footer {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      padding-top: 24px;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 720px) {
+      body { padding: 0 16px 48px; font-size: 16px; }
+      section.cover { min-height: 70vh; }
+      section.cover .content { padding: 56px 32px; }
+      section.cover h1 { font-size: 44px; }
+      section.cover .subtitle { font-size: 18px; }
+      section.content { margin-bottom: 40px; padding: 32px 0; }
+      section.content h2 { font-size: 30px; }
+      section.content h3 { font-size: 20px; }
+      section.content p, section.content ol, section.content ul, section.content li { font-size: 16px; }
+      section.intro h2 { font-size: 34px; }
+      section.intro p.lede { font-size: 19px; }
+      section.divider { min-height: 50vh; margin-top: 48px; margin-bottom: 48px; }
+      section.divider .num { font-size: 220px; top: 24px; right: 24px; }
+      section.divider .label { padding: 56px 32px; }
+      section.divider h2 { font-size: 36px; }
+      section.quickcard { padding: 40px 24px 56px; margin: 48px auto; }
+      section.quickcard h2 { font-size: 28px; }
+      section.quickcard ol.steps li::before { flex: 0 0 48px; height: 48px; font-size: 28px; }
+      section.quickcard ol.steps .step-title { font-size: 18px; }
+      section.quickcard ol.steps .step-desc { font-size: 15px; }
+      section.back { min-height: 50vh; margin-top: 48px; }
+      section.back .content { padding: 56px 32px; }
+      section.back h2 { font-size: 34px; }
+      section.back p { font-size: 16px; }
+      section.back .cta { font-size: 16px; padding: 14px 24px; }
+    }
+  }
+
 </style>
 </head>
 <body>
