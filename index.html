@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complya Resources — ODPC Compliance for Kenyan Companies</title>
+<meta name="description" content="Free practical resources from Complya: ODPC Registration Checklist PDF and a library of LinkedIn posts on Kenya's Data Protection Act 2019.">
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/Inter-400.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-500.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-600.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/Inter-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("fonts/Playfair-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 900; src: url("fonts/Playfair-900.ttf"); }
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #F8F4E9;
+    --cream: #EFE8D6;
+    --green: #0F3D2E;
+    --green-light: #1F5A45;
+    --accent: #C8964A;
+    --muted: #6b6b6b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    background: #0a0a0a;
+    color: white;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url("photos/cover.jpg") center 40% / cover;
+    filter: brightness(0.55);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,30,20,0.3) 0%, rgba(10,30,20,0.85) 75%, rgba(10,30,20,0.95) 100%);
+  }
+  .hero-content {
+    position: relative;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    width: 100%;
+  }
+  .brand {
+    font-weight: 600;
+    font-size: 11pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: clamp(34pt, 5vw, 54pt);
+    line-height: 1.05;
+    margin: 0 0 18px;
+  }
+  .hero p {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 15pt;
+    color: rgba(255,255,255,0.88);
+    max-width: 680px;
+    margin: 0 0 32px;
+  }
+
+  /* CARDS */
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  .section-label {
+    font-weight: 600;
+    font-size: 10pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 30pt;
+    line-height: 1.15;
+    color: var(--green);
+    margin: 0 0 12px;
+  }
+  .lead {
+    font-size: 12pt;
+    color: var(--muted);
+    max-width: 680px;
+    margin: 0 0 36px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 700px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: white;
+    border: 1px solid #e3dac4;
+    border-radius: 4px;
+    padding: 32px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(15,61,46,0.12);
+  }
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--green);
+    color: var(--accent);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 22pt;
+    margin-bottom: 20px;
+  }
+  .card h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 20pt;
+    line-height: 1.15;
+    color: var(--green);
+    margin: 0 0 12px;
+  }
+  .card p {
+    font-size: 11pt;
+    color: var(--ink);
+    margin: 0 0 20px;
+    flex: 1;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    font-size: 10.5pt;
+    color: var(--muted);
+  }
+  .card ul li {
+    padding: 4px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .card ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .card-cta {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-weight: 600;
+    font-size: 11pt;
+    padding: 12px 20px;
+    border-radius: 3px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    margin-top: auto;
+  }
+  .card:hover .card-cta {
+    background: var(--green-light);
+  }
+
+  /* FEATURES */
+  .features {
+    background: var(--cream);
+    border-top: 1px solid #e3dac4;
+    border-bottom: 1px solid #e3dac4;
+    padding: 60px 0;
+  }
+  .features h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 22pt;
+    color: var(--green);
+    margin: 0 0 28px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 700px) {
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+  .feature {
+    font-size: 11pt;
+  }
+  .feature .num {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 28pt;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .feature strong {
+    display: block;
+    color: var(--green);
+    margin-bottom: 6px;
+    font-size: 11pt;
+  }
+
+  /* CTA STRIP */
+  .cta-strip {
+    background: var(--green);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+  }
+  .cta-strip h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 28pt;
+    margin: 0 0 16px;
+  }
+  .cta-strip p {
+    font-size: 12pt;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 24px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-strip a {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--green);
+    font-weight: 700;
+    font-size: 13pt;
+    padding: 14px 28px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0a0a0a;
+    color: rgba(255,255,255,0.6);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 10pt;
+    letter-spacing: 0.08em;
+  }
+  footer strong {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  footer a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="brand">Complya · A Bitverse Product</div>
+    <h1>Practical resources for Kenya's Data Protection Act.</h1>
+    <p>Free, no-nonsense guides for data controllers, processors, DPOs, and the founders who own the problem.</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="section-label">Free downloads</div>
+  <h2>Two things you can use today.</h2>
+  <p class="lead">No email gate, no demo booking, no "book a call" popup. Just the documents and posts.</p>
+
+  <div class="cards">
+    <a class="card" href="checklist.html">
+      <div class="card-icon">📋</div>
+      <h3>ODPC Registration Checklist PDF</h3>
+      <p>A practical 18-page guide for Kenyan data controllers and processors. The five-step path from "we should probably register" to certificate in hand.</p>
+      <ul>
+        <li>Documents you need before you log in</li>
+        <li>The portal form, section by section</li>
+        <li>7 mistakes that delay registration</li>
+        <li>Tear-off quick card with 6 steps</li>
+      </ul>
+      <span class="card-cta">Read the checklist →</span>
+    </a>
+
+    <a class="card" href="posts.html">
+      <div class="card-icon">✍️</div>
+      <h3>10 LinkedIn posts on DPA 2019</h3>
+      <p>Ready-to-publish posts for founders, DPOs, and compliance consultants building thought leadership on Kenyan data protection.</p>
+      <ul>
+        <li>4 educational posts on the Act</li>
+        <li>3 contrarian takes on common myths</li>
+        <li>2 product-context scenarios</li>
+        <li>1 lead-magnet post pointing to the PDF</li>
+      </ul>
+      <span class="card-cta">Browse the posts →</span>
+    </a>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h3>What's in the resources</h3>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="num">01</div>
+        <strong>Built for Kenyan reality</strong>
+        Every example references ODPC, KRA, the Data Protection Act 2019, and Section 33 fines. No generic GDPR copy-paste.
+      </div>
+      <div class="feature">
+        <div class="num">02</div>
+        <strong>Plain language</strong>
+        No legalese, no consultant-speak. Written for the founder who's wearing the compliance hat this quarter.
+      </div>
+      <div class="feature">
+        <div class="num">03</div>
+        <strong>Sector-aware</strong>
+        Specific guidance for fintechs, healthcare providers, SACCOs, and SMEs — not one-size-fits-all compliance.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <h3>Ready to find your real gaps?</h3>
+  <p>Registration is one requirement. Complya's free 5-minute assessment surfaces the seven other obligations you're likely missing.</p>
+  <a href="https://assessment.bitverse.co.ke">Run the free assessment →</a>
+</section>
+
+<footer>
+  <strong>Complya</strong> · A product by <a href="https://bitverse.co.ke">Bitverse</a> · Nairobi, Kenya · 2026
+</footer>
+
+</body>
+</html>

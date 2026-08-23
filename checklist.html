@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ODPC Registration Checklist — A Practical Guide for Kenyan Data Controllers & Processors</title>
+<style>
+  @font-face { font-family: "Playfair Display"; font-weight: 400; font-style: normal; src: url("fonts/Playfair-400.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: normal; src: url("fonts/Playfair-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: italic; src: url("fonts/Playfair-700-italic.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 900; font-style: normal; src: url("fonts/Playfair-900.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/Inter-400.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-500.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-600.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/Inter-700.ttf"); }
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #F8F4E9;
+    --cream: #EFE8D6;
+    --green: #0F3D2E;
+    --green-light: #1F5A45;
+    --accent: #C8964A;   /* warm gold */
+    --muted: #6b6b6b;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 18mm 16mm 22mm 16mm;
+    @top-left {
+      content: "ODPC Registration Checklist";
+      font-family: "Inter", sans-serif;
+      font-size: 9pt;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    @top-right {
+      content: "Complya · bitverse.co.ke";
+      font-family: "Inter", sans-serif;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+      font-family: "Inter", sans-serif;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+  }
+  @page cover { margin: 0; @top-left { content: none; } @top-right { content: none; } @bottom-center { content: none; } }
+  @page quickcard { margin: 0; @top-left { content: none; } @top-right { content: none; } @bottom-center { content: none; } }
+  @page back { margin: 0; @top-left { content: none; } @top-right { content: none; } @bottom-center { content: none; } }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  /* COVER */
+  section.cover {
+    page: cover;
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    background: #0a0a0a;
+    color: white;
+    overflow: hidden;
+  }
+  section.cover .photo {
+    position: absolute; inset: 0;
+    background-image: url("photos/cover.jpg");
+    background-size: cover;
+    background-position: center 40%;
+    filter: brightness(0.55);
+  }
+  section.cover .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,30,20,0.35) 0%, rgba(10,30,20,0.85) 75%, rgba(10,30,20,0.95) 100%);
+  }
+  section.cover .content {
+    position: absolute;
+    inset: 0;
+    padding: 28mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  section.cover .brand {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 10pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  section.cover h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 44pt;
+    line-height: 1.05;
+    margin: 0 0 14mm;
+    color: white;
+  }
+  section.cover .subtitle {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14pt;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.85);
+    max-width: 150mm;
+    margin-bottom: 8mm;
+  }
+  section.cover .meta {
+    border-top: 1px solid rgba(255,255,255,0.25);
+    padding-top: 5mm;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Inter", sans-serif;
+    font-size: 9pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* INTRO */
+  section.intro {
+    padding-top: 4mm;
+  }
+  section.intro h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 28pt;
+    line-height: 1.1;
+    color: var(--green);
+    margin: 0 0 6mm;
+  }
+  section.intro p.lede {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.5;
+    color: var(--green-light);
+    margin: 0 0 6mm;
+  }
+
+  /* SECTION DIVIDER */
+  section.divider {
+    page: cover;
+    page-break-before: always;
+    page-break-after: always;
+    width: 210mm; height: 297mm;
+    position: relative;
+    background: var(--green);
+    color: white;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  section.divider .num {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 220pt;
+    line-height: 0.85;
+    color: rgba(255,255,255,0.08);
+    position: absolute;
+    top: 8mm;
+    right: 14mm;
+  }
+  section.divider .label {
+    position: absolute;
+    top: 38mm;
+    left: 22mm;
+    right: 22mm;
+  }
+  section.divider .step {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 11pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6mm;
+  }
+  section.divider h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 38pt;
+    line-height: 1.05;
+    color: white;
+    margin: 0;
+    max-width: 150mm;
+  }
+  section.divider .photo-strip {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 70mm;
+    background-image: url("photos/section_nairobi.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+  }
+  section.divider .photo-strip::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(15,61,46,0) 0%, rgba(15,61,46,0.9) 100%);
+  }
+
+  /* CONTENT PAGES */
+  section.content { page-break-before: always; }
+  section.content h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 24pt;
+    line-height: 1.15;
+    color: var(--green);
+    margin: 0 0 5mm;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 3mm;
+  }
+  section.content h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: var(--green);
+    margin: 6mm 0 2mm;
+  }
+  section.content p {
+    margin: 0 0 3mm;
+  }
+  section.content ol, section.content ul {
+    margin: 2mm 0 4mm 6mm;
+    padding: 0;
+  }
+  section.content li {
+    margin-bottom: 1.5mm;
+  }
+  section.content strong {
+    font-weight: 600;
+    color: var(--green);
+  }
+  section.content .callout {
+    background: var(--cream);
+    border-left: 4px solid var(--accent);
+    padding: 4mm 5mm;
+    margin: 5mm 0;
+    font-size: 10.5pt;
+  }
+  section.content .callout strong {
+    color: var(--green);
+    display: block;
+    margin-bottom: 1mm;
+    font-size: 9pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* QUICK REFERENCE CARD (tear-off) */
+  section.quickcard {
+    page: quickcard;
+    page-break-before: always;
+    width: 210mm; height: 297mm;
+    background: var(--paper);
+    padding: 14mm 18mm;
+    position: relative;
+  }
+  section.quickcard h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 26pt;
+    color: var(--green);
+    margin: 0 0 2mm;
+    line-height: 1.1;
+  }
+  section.quickcard .sub {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 9.5pt;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6mm;
+    border-bottom: 1px solid #d4cbb4;
+    padding-bottom: 3mm;
+  }
+  section.quickcard ol.steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 0 0 5mm;
+  }
+  section.quickcard ol.steps li {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    gap: 5mm;
+    padding: 3mm 0;
+    border-bottom: 1px dashed #d4cbb4;
+    page-break-inside: avoid;
+  }
+  section.quickcard ol.steps li::before {
+    content: counter(step);
+    flex: 0 0 18mm;
+    height: 18mm;
+    background: var(--green);
+    color: white;
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 22pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2mm;
+  }
+  section.quickcard ol.steps .step-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 13pt;
+    color: var(--green);
+    line-height: 1.1;
+    margin-bottom: 1mm;
+  }
+  section.quickcard ol.steps .step-desc {
+    font-family: "Inter", sans-serif;
+    font-size: 9.5pt;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  section.quickcard .check-box {
+    flex: 0 0 8mm;
+    width: 8mm; height: 8mm;
+    border: 2px solid var(--green);
+    border-radius: 1mm;
+    margin-top: 1mm;
+  }
+  section.quickcard .footer {
+    position: absolute;
+    bottom: 12mm; left: 18mm; right: 18mm;
+    border-top: 2px solid var(--green);
+    padding-top: 4mm;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Inter", sans-serif;
+    font-size: 9pt;
+    color: var(--muted);
+  }
+  section.quickcard .footer .brand {
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* BACK COVER */
+  section.back {
+    page: back;
+    page-break-before: always;
+    width: 210mm; height: 297mm;
+    background: var(--green);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  section.back .photo {
+    position: absolute; inset: 0;
+    background-image: url("photos/back.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+  }
+  section.back .content {
+    position: absolute; inset: 0;
+    padding: 30mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  section.back .brand {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  section.back h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 32pt;
+    line-height: 1.1;
+    margin: 0 0 6mm;
+  }
+  section.back p {
+    font-size: 11pt;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+    max-width: 140mm;
+  }
+  section.back .cta {
+    background: var(--accent);
+    color: var(--green);
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 13pt;
+    padding: 5mm 8mm;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 4mm;
+    letter-spacing: 0.04em;
+  }
+  section.back .url {
+    font-family: "Inter", sans-serif;
+    font-size: 11pt;
+    color: rgba(255,255,255,0.9);
+    margin-top: 2mm;
+    letter-spacing: 0.05em;
+  }
+  section.back .footer {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 4mm;
+    font-size: 8.5pt;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<nav style="background:#0F3D2E; color:white; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; font-family:Inter,sans-serif;">
+  <a href="index.html" style="color:#C8964A; text-decoration:none; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; font-size:10pt;">Complya · Resources</a>
+  <span style="font-size:10.5pt;">
+    <a href="checklist.html" style="color:white; text-decoration:none; margin-left:20px; font-weight:500;">Checklist</a>
+    <a href="posts.html" style="color:white; text-decoration:none; margin-left:20px; font-weight:500;">Posts</a>
+    <a href="checklist.pdf" download style="display:inline-block; background:#C8964A; color:#0F3D2E; padding:6px 14px; border-radius:3px; text-decoration:none; margin-left:20px; font-weight:700; letter-spacing:0.04em;">↓ Download PDF</a>
+  </span>
+</nav>
+
+
+<!-- COVER -->
+<section class="cover">
+  <div class="photo"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="brand">Complya · A Bitverse Product</div>
+    <div>
+      <h1>ODPC Registration Checklist</h1>
+      <p class="subtitle">A practical guide for Kenyan data controllers &amp; processors — from prerequisites to certificate in hand.</p>
+    </div>
+    <div class="meta">
+      <span>Edition 1.0 · 2026</span>
+      <span>bitverse.co.ke</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="content intro" style="page-break-before: always;">
+  <h2>Who this is for</h2>
+  <p class="lede">If you handle any personal data of any person residing in Kenya, this checklist is for you.</p>
+  <p>Kenya's <strong>Data Protection Act, 2019</strong> applies to every entity — company, NGO, SACCO, fintech, hospital, school, religious organisation — that processes the personal data of any person residing in Kenya. It does not matter if you are incorporated in Nairobi or Delaware. If you hold Kenyan data, the Act applies.</p>
+  <p>The <strong>Office of the Data Protection Commissioner (ODPC)</strong> is the regulator. They maintain the public register of data controllers and processors. They investigate complaints. They publish enforcement notices. They issue directives.</p>
+  <p>Registration with ODPC is mandatory under the Act. There is no revenue threshold, no employee-count exemption, no "we're too small" carve-out. If you process personal data, you register.</p>
+  <div class="callout">
+    <strong>What this guide gives you</strong>
+    The five-step path from "we should probably register" to certificate in hand. The documents you need before you start. The mistakes that delay applications. The annual obligations that follow. No legalese, no consultant-speak.
+  </div>
+  <h3>What this guide does not do</h3>
+  <p>It does not replace legal advice for complex cross-border transfers, large-scale sensitive data processing, or sector-specific regulators (CBK, IRA, KMPDC). For those, talk to a qualified Kenyan lawyer. For everything else — register, document, defend.</p>
+</section>
+
+<!-- BEFORE YOU START -->
+<section class="content">
+  <h2>Before you start</h2>
+  <p>ODPC's online portal will not save a half-completed form indefinitely. Get these four things on paper before you log in.</p>
+
+  <h3>1. A data inventory</h3>
+  <p>List every category of personal data you collect. Names, ID numbers, phone numbers, emails, addresses, payment data, health data, employment records, photos, location data. The portal will ask. "All of it" is not an answer.</p>
+
+  <h3>2. A processing purposes document</h3>
+  <p>Why do you collect each category? Customer onboarding? Payroll? Service delivery? Marketing? Each purpose must be specific and lawful under the Act. Vague purposes get rejected.</p>
+
+  <h3>3. A designated accountable person</h3>
+  <p>This is the person in your organisation who owns data protection. It can be your COO, head of legal, founder — anyone with authority to act. The portal requires their name, email, and phone. They will be ODPC's contact point.</p>
+
+  <h3>4. Your registration fee budget</h3>
+  <p>The current fee schedule is published by the Office of the Data Protection Commissioner on their website. Check the schedule for your entity type and category before you start, not after.</p>
+
+  <div class="callout">
+    <strong>Time estimate</strong>
+    Most Kenyan SMEs complete the form in 60–90 minutes if the four items above are ready. Without them, expect three to five rounds of email back-and-forth.
+  </div>
+</section>
+
+<!-- STEP 1 DIVIDER -->
+<section class="divider">
+  <div class="num">01</div>
+  <div class="label">
+    <div class="step">Step One</div>
+    <h2>Create your account on the ODPC portal</h2>
+  </div>
+  <div class="photo-strip"></div>
+</section>
+
+<section class="content">
+  <h2>Step 1 — Register on the ODPC portal</h2>
+  <p>Go to the Office of the Data Protection Commissioner's official portal. Use the entity's primary business email — not a personal Gmail — because this becomes your registered contact.</p>
+  <ol>
+    <li>Navigate to the ODPC registration portal on the official ODPC website.</li>
+    <li>Click <strong>Register</strong> and create a user account using a corporate email address (e.g. dpo@yourcompany.co.ke).</li>
+    <li>Verify the email address through the confirmation link ODPC sends.</li>
+    <li>Log in. From the dashboard, select <strong>Data Controller / Processor Registration</strong>.</li>
+    <li>Choose the correct entity type: <em>Data Controller</em>, <em>Data Processor</em>, or <em>Both</em>. Most companies are both — you decide purposes (controller) and you process data on behalf of customers or partners (processor).</li>
+  </ol>
+  <div class="callout">
+    <strong>Common mistake</strong>
+    Registering as a controller only, when you are also processing data on behalf of another controller. If you handle payroll for clients, host data for partners, or run any service that processes someone else's customer data, you are a processor too. Register accordingly.
+  </div>
+</section>
+
+<!-- STEP 2 DIVIDER -->
+<section class="divider">
+  <div class="num">02</div>
+  <div class="label">
+    <div class="step">Step Two</div>
+    <h2>Complete the registration form</h2>
+  </div>
+  <div class="photo-strip"></div>
+</section>
+
+<section class="content">
+  <h2>Step 2 — Complete the registration form</h2>
+  <p>The form has six sections. Most rejections happen here, usually from vague language in section four.</p>
+
+  <h3>A. Organisation details</h3>
+  <p>Legal name as it appears on your CR12 or registration certificate. Trading name if different. Physical address (not a P.O. Box — ODPC wants a physical address). Country of incorporation.</p>
+
+  <h3>B. Contact person</h3>
+  <p>Your designated accountable person from the pre-work. Full name, official title, direct phone, corporate email. ODPC will contact this person — make sure they know.</p>
+
+  <h3>C. Data protection officer (if applicable)</h3>
+  <p>Only required if your core activities involve large-scale, regular, and systematic monitoring of data subjects, or large-scale processing of sensitive personal data. Most SMEs do not need a separately-named DPO.</p>
+
+  <h3>D. Categories of data subjects</h3>
+  <p>Tick all that apply: customers, employees, job applicants, suppliers, website visitors, patients, students, members. Most companies tick three to five.</p>
+
+  <h3>E. Categories of personal data</h3>
+  <p>Names, contact details, identification numbers, financial data, health data, location data, biometric data, employment history. Tick only what you actually collect.</p>
+
+  <h3>F. Purposes of processing</h3>
+  <p>This is where most applications fall apart. Vague purposes like "service delivery" or "business operations" get challenged. Be specific:</p>
+  <ul>
+    <li>Customer onboarding and KYC verification</li>
+    <li>Payroll administration and statutory deductions</li>
+    <li>Sending service notifications via SMS and email</li>
+    <li>Detecting and preventing fraud on our platform</li>
+    <li>Complying with [specific law or regulator] reporting obligations</li>
+  </ul>
+  <p>Each purpose must be tied to a lawful basis under Section 30 of the Act: consent, contract, legal obligation, vital interest, public task, or legitimate interest.</p>
+
+  <div class="callout">
+    <strong>Pro tip</strong>
+    Draft your processing purposes in a separate document before opening the portal. Each purpose: 1–2 sentences, tied to a lawful basis, naming the data categories involved. Paste in. Move on.
+  </div>
+</section>
+
+<!-- STEP 3 DIVIDER -->
+<section class="divider">
+  <div class="num">03</div>
+  <div class="label">
+    <div class="step">Step Three</div>
+    <h2>Pay the registration fee</h2>
+  </div>
+  <div class="photo-strip"></div>
+</section>
+
+<section class="content">
+  <h2>Step 3 — Pay the registration fee</h2>
+  <p>ODPC publishes the current fee schedule by entity category. Categories typically include large organisations, medium organisations, small organisations, and specific sectors (telecoms, banks, insurers). Your category depends on turnover, employee count, or sector.</p>
+  <p>Fees are published on the ODPC website. Check the schedule before you submit the form — the portal will calculate the amount based on your category.</p>
+
+  <h3>Payment methods</h3>
+  <ul>
+    <li>Mobile money (M-Pesa Pay Bill or Buy Goods — instructions on the portal)</li>
+    <li>Bank transfer to ODPC's collection account (details on the portal)</li>
+    <li>Direct debit, for registered large entities</li>
+  </ul>
+  <p>Keep your payment confirmation message or bank slip. You will upload it in step four.</p>
+
+  <div class="callout">
+    <strong>Annual renewal</strong>
+    Registration is annual. Set a calendar reminder one month before your certificate expires. Lapsed registrations show up on the ODPC public register as inactive — which means anyone doing due diligence on your company can see you fell out of compliance.
+  </div>
+</section>
+
+<!-- STEP 4 DIVIDER -->
+<section class="divider">
+  <div class="num">04</div>
+  <div class="label">
+    <div class="step">Step Four</div>
+    <h2>Upload supporting documents</h2>
+  </div>
+  <div class="photo-strip"></div>
+</section>
+
+<section class="content">
+  <h2>Step 4 — Upload supporting documents</h2>
+  <p>The portal will ask for the following, depending on entity type:</p>
+  <ul>
+    <li><strong>Certificate of Registration / CR12</strong> — issued by the Registrar of Companies, valid within the last 12 months</li>
+    <li><strong>KRA PIN certificate</strong> — for the entity, not the individual</li>
+    <li><strong>National ID or passport copy</strong> — for the designated accountable person</li>
+    <li><strong>Data processing description</strong> — the document you drafted in pre-work, expanded with retention periods and cross-border transfer details</li>
+    <li><strong>Payment confirmation</strong> — M-Pesa message or bank slip from Step 3</li>
+  </ul>
+  <p>Upload PDFs. Keep filenames clean: <em>CR12_YourCompany_2026.pdf</em>, not <em>scan_final_v3.pdf</em>. ODPC staff have to open these.</p>
+
+  <div class="callout">
+    <strong>Cross-border transfers</strong>
+    If any of your data is processed or stored outside Kenya (a US-hosted cloud provider, an offshore payroll vendor, a regional data centre), declare it in the processing description. ODPC requires you to name the destination country, the data category, and the lawful basis for the transfer. Hiding it is the single most common cause of post-registration enforcement.
+  </div>
+</section>
+
+<!-- STEP 5 DIVIDER -->
+<section class="divider">
+  <div class="num">05</div>
+  <div class="label">
+    <div class="step">Step Five</div>
+    <h2>Submit and await your certificate</h2>
+  </div>
+  <div class="photo-strip"></div>
+</section>
+
+<section class="content">
+  <h2>Step 5 — Submit and await your certificate</h2>
+  <p>Review every section. Tick the declaration. Submit.</p>
+  <p>ODPC will email confirmation of receipt. They will then review the application. For straightforward applications, this takes two to four weeks. For complex applications (cross-border transfers, large-scale processing, sensitive data), it can take longer.</p>
+
+  <h3>What you receive</h3>
+  <ul>
+    <li>A <strong>registration certificate</strong> with your unique registration number</li>
+    <li>Confirmation that your entry is live on the <strong>ODPC public register</strong></li>
+    <li>Annual renewal instructions</li>
+  </ul>
+
+  <h3>If you are asked for clarification</h3>
+  <p>ODPC may write back asking for clarification on processing purposes, lawful basis, or cross-border transfers. Reply within the deadline they give — typically seven days. Vague or late replies reset the review clock.</p>
+
+  <div class="callout">
+    <strong>Display your registration</strong>
+    Add your registration number to your privacy notice, your website footer, and your customer-facing documents. Customers and partners are increasingly asking for it during due diligence.
+  </div>
+</section>
+
+<!-- COMMON MISTAKES -->
+<section class="content">
+  <h2>Seven mistakes that delay registration</h2>
+
+  <h3>1. Vague processing purposes</h3>
+  <p>"Service delivery" is not a purpose. "Verifying customer identity during onboarding to comply with AML regulations" is a purpose. Be specific or expect a clarification request.</p>
+
+  <h3>2. Wrong entity classification</h3>
+  <p>If you process payroll for clients, host data for partners, or run analytics on someone else's customer data, you are a processor. Register as one. Most companies are both controller and processor — pick both.</p>
+
+  <h3>3. Missing cross-border transfer declarations</h3>
+  <p>Using AWS US-East, Google Cloud, Azure, a US payroll vendor, or any offshore service provider means your data leaves Kenya. Declare it.</p>
+
+  <h3>4. Personal email addresses</h3>
+  <p>Register with a corporate email. ODPC will not chase you if they email dpo@gmail.com and your cousin is using that address.</p>
+
+  <h3>5. Expired CR12</h3>
+  <p>Your CR12 must be issued within the last 12 months. Older CR12s get rejected. Order a fresh one if yours is more than six months old.</p>
+
+  <h3>6. Wrong fee category</h3>
+  <p>Paying the small-entity fee when you are a medium or large entity is treated as underpayment. Your application is paused until the balance is cleared.</p>
+
+  <h3>7. Treating registration as the whole job</h3>
+  <p>Registration is one obligation. It does not exempt you from maintaining a privacy notice, responding to data subject requests, documenting breach response, or annual renewal.</p>
+</section>
+
+<!-- ANNUAL OBLIGATIONS -->
+<section class="content">
+  <h2>After registration — annual obligations</h2>
+  <p>Registration is a snapshot. Compliance is continuous. Here is what you owe ODPC each year, after the certificate lands.</p>
+
+  <h3>Annual renewal</h3>
+  <p>Pay the renewal fee before your certificate expires. Update any changed details (new address, new accountable person, new processing activities).</p>
+
+  <h3>Breach notification</h3>
+  <p>If you suffer a data breach that affects the rights and freedoms of data subjects, notify ODPC within the timeline prescribed by the Act and ODPC's breach notification guidance. Have a written breach response plan before you need one — not during a panic.</p>
+
+  <h3>Data subject requests</h3>
+  <p>Any data subject can ask you what data you hold on them, correct it, delete it, or object to processing. You must respond within statutory timelines. Have a process. Have a form. Train your team to recognise a request.</p>
+
+  <h3>Documented processing register</h3>
+  <p>Maintain an internal Register of Data Processing Activities. Each entry: purpose, lawful basis, data categories, recipients, retention period, security measures. ODPC can request this on inspection.</p>
+
+  <h3>Privacy notice</h3>
+  <p>Publish a privacy notice on your website that names the data you collect, why, who you share it with, and how someone contacts you to exercise their rights. Keep it accurate. Update it when processing changes.</p>
+
+  <div class="callout">
+    <strong>The honest summary</strong>
+    Registration puts you on the map. Annual obligations keep you defensible. The companies that get caught are not the ones that failed to register — they are the ones that registered and then did nothing for three years.
+  </div>
+</section>
+
+<!-- QUICK REFERENCE CARD (TEAR-OFF) -->
+<section class="quickcard">
+  <h2>ODPC Registration — Quick Card</h2>
+  <div class="sub">Pin this. Tick as you go.</div>
+
+  <ol class="steps">
+    <li>
+      <div class="check-box"></div>
+      <div>
+        <div class="step-title">Pre-work</div>
+        <div class="step-desc">Data inventory · processing purposes · accountable person · fee budget. Before you log in.</div>
+      </div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div>
+        <div class="step-title">Create account</div>
+        <div class="step-desc">ODPC portal · corporate email · verify · choose Controller / Processor / Both.</div>
+      </div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div>
+        <div class="step-title">Complete form</div>
+        <div class="step-desc">Org details · contact · data categories · specific purposes tied to lawful basis.</div>
+      </div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div>
+        <div class="step-title">Pay fee</div>
+        <div class="step-desc">Check ODPC schedule · M-Pesa or bank · keep confirmation.</div>
+      </div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div>
+        <div class="step-title">Upload &amp; submit</div>
+        <div class="step-desc">CR12 · KRA PIN · ID · processing description · payment slip · declare cross-border transfers.</div>
+      </div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div>
+        <div class="step-title">Receive certificate</div>
+        <div class="step-desc">Add registration number to privacy notice &amp; website. Set annual renewal reminder.</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="footer">
+    <span class="brand">Complya · bitverse.co.ke</span>
+    <span>assessment.bitverse.co.ke</span>
+  </div>
+</section>
+
+<!-- BACK COVER -->
+<section class="back">
+  <div class="photo"></div>
+  <div class="content">
+    <div class="brand">Complya · A Bitverse Product</div>
+    <div>
+      <h2>Now find your real gaps.</h2>
+      <p>Registration is one requirement. The Data Protection Act, 2019 has seven others you are likely missing. Complya's free 5-minute assessment surfaces them — across registration, governance, data subject rights, breach response, cross-border transfers, retention, and training.</p>
+      <a class="cta" href="https://assessment.bitverse.co.ke">Run the free assessment →</a>
+      <div class="url">assessment.bitverse.co.ke</div>
+    </div>
+    <div class="footer">
+      <span>© 2026 Bitverse · Nairobi, Kenya</span>
+      <span>Edition 1.0</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

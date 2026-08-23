@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 LinkedIn Posts on DPA 2019 — Complya</title>
+<meta name="description" content="Ready-to-publish LinkedIn posts for Kenyan founders, DPOs, and compliance consultants. Built around the Data Protection Act 2019.">
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/Inter-400.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-500.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-600.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/Inter-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; src: url("fonts/Playfair-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 900; src: url("fonts/Playfair-900.ttf"); }
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #F8F4E9;
+    --cream: #EFE8D6;
+    --green: #0F3D2E;
+    --green-light: #1F5A45;
+    --accent: #C8964A;
+    --muted: #6b6b6b;
+    --rule: #e3dac4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--green);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  nav a.brand-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 10pt;
+  }
+  nav .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 10.5pt;
+    font-weight: 500;
+  }
+  nav .nav-links a:hover { color: var(--accent); }
+
+  /* HEADER */
+  header {
+    background: white;
+    border-bottom: 1px solid var(--rule);
+    padding: 56px 24px 40px;
+  }
+  header .container {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-weight: 600;
+    font-size: 10pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: clamp(28pt, 4vw, 42pt);
+    line-height: 1.1;
+    color: var(--green);
+    margin: 0 0 16px;
+  }
+  .sub {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--green-light);
+    margin: 0 0 28px;
+    max-width: 700px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 700px) {
+    .meta-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .meta-grid div {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 12px;
+  }
+  .meta-grid strong {
+    display: block;
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .meta-grid span {
+    font-size: 11pt;
+    font-weight: 600;
+    color: var(--green);
+  }
+
+  /* CADENCE */
+  .cadence {
+    background: var(--cream);
+    padding: 28px 24px;
+    border-radius: 4px;
+    margin: 32px 0 0;
+    border: 1px solid var(--rule);
+  }
+  .cadence h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: var(--green);
+    margin: 0 0 12px;
+  }
+  .cadence-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    font-size: 10pt;
+  }
+  @media (max-width: 700px) {
+    .cadence-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .cadence-grid div {
+    background: white;
+    padding: 8px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .cadence-grid strong {
+    display: block;
+    color: var(--green);
+    font-size: 9pt;
+    margin-bottom: 2px;
+  }
+
+  /* POSTS */
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .post {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  .post-num {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 32pt;
+    color: var(--green);
+    line-height: 1;
+  }
+  .post-archetype {
+    text-align: right;
+  }
+  .post-archetype .archetype {
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .post-archetype .cta-link {
+    font-size: 10pt;
+    color: var(--green-light);
+  }
+
+  .post h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 20pt;
+    line-height: 1.2;
+    color: var(--green);
+    margin: 0 0 16px;
+  }
+  .post-label {
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 16px 0 6px;
+  }
+  .hook {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 14pt;
+    line-height: 1.3;
+    color: var(--ink);
+    background: var(--cream);
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin: 0 0 16px;
+  }
+  .body p, .body li {
+    font-size: 11pt;
+    line-height: 1.6;
+    margin: 0 0 8px;
+  }
+  .body ol, .body ul {
+    margin: 8px 0 8px 24px;
+    padding: 0;
+  }
+  .body li { margin-bottom: 6px; }
+  .body strong { color: var(--green); font-weight: 600; }
+
+  .copy-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 3px;
+    font-family: "Inter", sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: var(--green-light); }
+  .copy-btn.copied {
+    background: var(--accent);
+    color: var(--green);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0a0a0a;
+    color: rgba(255,255,255,0.6);
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 10pt;
+    letter-spacing: 0.08em;
+  }
+  footer strong {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  footer a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    margin: 0 12px;
+  }
+  footer p { margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand-link" href="index.html">Complya · Resources</a>
+  <span class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="checklist.html">Checklist PDF</a>
+    <a href="posts.html">LinkedIn Posts</a>
+  </span>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="eyebrow">10 posts · ready to publish</div>
+    <h1>LinkedIn posts on Kenya's Data Protection Act.</h1>
+    <p class="sub">For founders, DPOs, and compliance consultants building thought leadership in the Kenyan market.</p>
+
+    <div class="meta-grid">
+      <div><strong>Voice</strong><span>Founder, first-person</span></div>
+      <div><strong>Length</strong><span>200–280 words</span></div>
+      <div><strong>Format</strong><span>Hook → body → CTA</span></div>
+      <div><strong>Cadence</strong><span>5 posts / week</span></div>
+    </div>
+
+    <div class="cadence">
+      <h3>Suggested 2-week posting cadence</h3>
+      <div class="cadence-grid">
+        <div><strong>Mon W1</strong>Post 1 (educational)</div>
+        <div><strong>Tue W1</strong>Post 5 (contrarian)</div>
+        <div><strong>Wed W1</strong>Post 8 (product)</div>
+        <div><strong>Thu W1</strong>Post 3 (educational)</div>
+        <div><strong>Fri W1</strong>Post 10 (lead magnet)</div>
+        <div><strong>Mon W2</strong>Post 6 (contrarian)</div>
+        <div><strong>Tue W2</strong>Post 9 (product)</div>
+        <div><strong>Wed W2</strong>Post 4 (sector)</div>
+        <div><strong>Thu W2</strong>Post 2 (enforcement)</div>
+        <div><strong>Fri W2</strong>Post 7 (cost)</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <article class="post" data-post="1">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">01</div>
+      <div class="post-archetype">
+        <div class="archetype">Educational · DPA 2019</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>DPA 2019 is in force. Most companies still treat it like a future problem.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">The Data Protection Act 2019 isn't a suggestion. It's the law.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>Kenya's Data Protection Act, 2019 is in force. Yet most companies I talk to still treat it like a future problem.</p>
+      <p>Here's the reality:</p>
+      <p>The Act applies to every entity — company, NGO, SACCO, fintech, hospital — that processes the personal data of any person residing in Kenya. It doesn't matter if you're incorporated in Nairobi or Delaware. If you hold Kenyan data, the Act applies.</p>
+      <p>ODPC (Office of the Data Protection Commissioner) is the regulator. They run the data controllers/processors register. They publish enforcement notices publicly. They can investigate on complaint or on their own motion.</p>
+      <p>Section 33 of the Act sets the penalty ceiling. We're talking fines up to KES 5 million for serious breaches. "Serious" isn't a high bar.</p>
+      <p>Three things every Kenyan data controller must do right now:</p>
+      <ol>
+        <li>Register with ODPC (mandatory under the Act)</li>
+        <li>Appoint or designate someone accountable for data protection</li>
+        <li>Maintain a Register of Data Processing Activities</li>
+      </ol>
+      <p>None of this is optional. None of this is "for later."</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Run a free 5-minute compliance check → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="2">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">02</div>
+      <div class="post-archetype">
+        <div class="archetype">Educational · ODPC enforcement</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>ODPC has been naming names. Publicly.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">ODPC has been naming names. Publicly.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>The Office of the Data Protection Commissioner publishes enforcement notices. You can pull them up on the ODPC website.</p>
+      <p>They name the company. They describe the breach. They state the directive or penalty.</p>
+      <p>This isn't a private slap on the wrist. It's a public, searchable record. Your customers, your partners, your competitors can all see it.</p>
+      <p>What I've noticed reading through the published notices:</p>
+      <ul>
+        <li>Most cases started with a single complaint from one data subject</li>
+        <li>Most companies had no documented processing activities</li>
+        <li>Most had not registered with ODPC</li>
+        <li>Most had no named accountable person for data protection</li>
+      </ul>
+      <p>The pattern is consistent. The regulator isn't hunting — they're responding. But when they respond, they respond in writing, and they publish.</p>
+      <p>If your company processes personal data in Kenya and you haven't registered with ODPC, you're already exposed. Not because you'll be raided tomorrow. But because one complaint from one customer, one ex-employee, one rejected job applicant is enough to start a process you don't want.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Don't wait for a complaint. Check your status in 5 minutes → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="3">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">03</div>
+      <div class="post-archetype">
+        <div class="archetype">Educational · Common mistakes</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>The same five mistakes. Every. Single. Time.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">The same five mistakes. Every. Single. Time.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>After sitting across from dozens of Kenyan companies, the gaps are predictable. Here are the five I see most:</p>
+      <ol>
+        <li>Treating compliance as an IT problem. It's a governance problem. IT can implement; someone has to decide policy.</li>
+        <li>Copy-pasting a privacy policy from a US or EU template. The DPA 2019 has specific consent, purpose limitation, and data subject rights provisions. A generic policy won't satisfy them.</li>
+        <li>Registering with ODPC and stopping. Registration is one requirement. It's not the whole job.</li>
+        <li>Not training staff. Your customer care team, your HR team, your sales team — they handle personal data daily. They need to know what they can and can't do with it.</li>
+        <li>No incident response plan. The Act requires you to notify ODPC of breaches within specified timelines. If nobody knows who calls whom, you'll miss the window.</li>
+      </ol>
+      <p>None of these require a KES 5 million budget. They require attention.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Score your company against these five in under 5 minutes → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="4">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">04</div>
+      <div class="post-archetype">
+        <div class="archetype">Educational · Sector-specific</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>Fintech, healthcare, SACCOs — the rules bite differently.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">Fintech, healthcare, SACCOs — the rules bite differently.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>Not all compliance work is the same. The sector you're in changes what ODPC and the law expect from you.</p>
+      <p><strong>Fintechs:</strong> You process ID numbers, KYC data, transaction records, mobile money flows. You're a data controller — and often a processor for other fintechs you integrate with. Cross-border transfer documentation is non-negotiable when your data sits with a US-hosted core banking or payments vendor.</p>
+      <p><strong>Healthcare:</strong> Patient data is sensitive personal data under the Act. Higher bar for consent, retention limits, access controls. If your hospital management system or telemedicine platform hosts data outside Kenya, you have a cross-border transfer issue that needs to be documented and lawful.</p>
+      <p><strong>SACCOs:</strong> You hold member KYC, next-of-kin, employment data, financial records. Most SACCOs I talk to haven't registered with ODPC because they think they're "too small" or "not a fintech." Wrong. You're a data controller if you process member data. The Act doesn't carve out SACCOs.</p>
+      <p>The mistake is treating compliance as one-size-fits-all. It's not.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Pick your sector, see your actual gaps → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="5">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">05</div>
+      <div class="post-archetype">
+        <div class="archetype">Contrarian · DPO hiring</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>Stop hiring a DPO you don't need.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">Stop hiring a DPO you don't need.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>Hot take: most Kenyan SMEs don't need a full-time Data Protection Officer.</p>
+      <p>The DPA 2019 requires a DPO in specific circumstances — primarily where core activities involve large-scale, regular, and systematic monitoring of data subjects, or large-scale processing of sensitive personal data. Most Kenyan companies doing everyday business don't trigger that threshold.</p>
+      <p>What you actually need is someone accountable. A person in your org who owns data protection, has authority to act, and knows the law well enough to make calls. That person can be your COO. Your head of legal. Even your CTO if they're serious about it.</p>
+      <p>Hiring a "DPO" with no authority is theatre. The regulator doesn't care about your org chart. They care about whether someone is actually doing the work — and whether that work is documented.</p>
+      <p>Three things that beat a fancy DPO job ad:</p>
+      <ul>
+        <li>A documented Register of Data Processing Activities</li>
+        <li>A privacy notice that's actually accurate (not a copy-paste)</li>
+        <li>A real breach response plan with names and numbers attached</li>
+      </ul>
+      <p>Build that first. Then decide if you need a full-time hire.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Find out what your org actually needs (not what consultants sell you) → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="6">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">06</div>
+      <div class="post-archetype">
+        <div class="archetype">Contrarian · Registration myths</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>Three ODPC registration myths I hear every week.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">Three ODPC registration myths I hear every week.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p><strong>Myth 1:</strong> "We're below the threshold so we don't have to register."</p>
+      <p>Wrong. Under the DPA 2019, registration is mandatory for data controllers and data processors. There's no revenue threshold, no employee-count exemption. If you process personal data of people in Kenya, register.</p>
+      <p><strong>Myth 2:</strong> "Our parent company is registered abroad, so we're covered."</p>
+      <p>Wrong. The Act applies based on where the data subject is, not where the company is. A foreign entity serving Kenyan customers still has to register with ODPC.</p>
+      <p><strong>Myth 3:</strong> "Once we register, we're compliant."</p>
+      <p>Wrong. Registration is one obligation. It doesn't satisfy your need for a privacy notice, lawful basis for processing, data subject rights procedures, breach notification, retention policies, or cross-border transfer documentation.</p>
+      <p>Registration is the door. It's not the building.</p>
+      <p>Stop confusing the act of submitting a form with the act of being compliant.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Separate "registered" from "compliant" — take the 5-minute check → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="7">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">07</div>
+      <div class="post-archetype">
+        <div class="archetype">Contrarian · Cost of compliance</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>Compliance isn't expensive. Getting caught unprepared is.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">Compliance isn't expensive. Getting caught unprepared is.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>Since CFOs and founders read this feed, let me talk money.</p>
+      <p>The fine ceiling under Section 33 of the DPA 2019 is KES 5 million. That's per breach in serious cases. Add reputational cost when an ODPC enforcement notice naming your company goes public. Add customer churn when the notice hits the press. Add legal cost of responding to an investigation.</p>
+      <p>Now compare that to what compliance actually costs a typical Kenyan SME:</p>
+      <ul>
+        <li>ODPC registration fee: modest, annually</li>
+        <li>A privacy notice drafted by someone competent: one-time, modest fee</li>
+        <li>Internal documentation (processing register, retention policy, breach plan): internal hours, no external spend</li>
+        <li>Staff training: half-day, internal</li>
+        <li>Tools to manage it all: depends on size — not a board-level spend</li>
+      </ul>
+      <p>The math isn't close.</p>
+      <p>What's expensive is waiting. What's expensive is treating this as a "next quarter" problem. What's expensive is hiring a consultant to write you a 100-page binder nobody reads.</p>
+      <p>The cheap path is boring, documented, and defensible.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>See what compliance would actually cost your company → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="8">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">08</div>
+      <div class="post-archetype">
+        <div class="archetype">Product · Hospital scenario</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>A hospital group came to us last month. Here's what we found.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">A hospital group came to us last month. Here's what we found.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>Multi-site hospital group. Three branches. 200+ staff. Patient records split across three systems — one legacy, one new EHR, one spreadsheet.</p>
+      <p>No ODPC registration. No documented retention policy. No breach response plan. Patient data being emailed to referral partners without encryption. Staff WhatsApping lab results to each other.</p>
+      <p>This wasn't a small business being careless. This was a serious healthcare provider that simply hadn't built the governance layer.</p>
+      <p>Within 48 hours of using Complya, the head of operations had:</p>
+      <ul>
+        <li>A full Register of Data Processing Activities mapped to the Act's requirements</li>
+        <li>A gap list showing exactly what was missing</li>
+        <li>ODPC registration completed</li>
+        <li>A draft incident response plan with named owners</li>
+        <li>A staff training outline ready to roll out</li>
+      </ul>
+      <p>None of this was rocket science. None of it required a law firm on retainer. It required someone owning the problem and a tool that made the steps visible.</p>
+      <p>That's why we built Complya.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>See what Complya would surface for your org → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="9">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">09</div>
+      <div class="post-archetype">
+        <div class="archetype">Product · SACCO scenario</div>
+        <div class="cta-link">CTA: assessment.bitverse.co.ke</div>
+      </div>
+    </div>
+    <h3>SACCOs are the most exposed sector I work with.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">SACCOs are the most exposed sector I work with.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>A growing SACCO. 4,000 members. Three branches. New mobile lending product launching next quarter.</p>
+      <p>When we ran them through Complya, the gap list was longer than their loan book.</p>
+      <p>Member data sitting in spreadsheets on branch laptops. No record of consent at onboarding. No privacy notice on the new mobile app. Cross-border data transfer via their US-hosted core banking system — undocumented. No accountable person. No breach plan. No ODPC registration.</p>
+      <p>The leadership team wasn't negligent. They were busy. Compliance was an item on a list that never got a calendar slot.</p>
+      <p>We worked through it with their operations lead in a week. Registration done. Privacy notice drafted for the app. Data Processing Agreement with their US vendor outlined. Breach response plan with the operations manager named as owner.</p>
+      <p>They launch the lending product next month — compliant, documented, defensible.</p>
+      <p>That's a normal week at Complya.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Running a SACCO? Find your gaps before your regulator does → assessment.bitverse.co.ke</p>
+  </article>
+
+  <article class="post" data-post="10">
+    <button class="copy-btn" onclick="copyPost(this)">Copy post</button>
+    <div class="post-header">
+      <div class="post-num">10</div>
+      <div class="post-archetype">
+        <div class="archetype">Lead magnet · Checklist PDF</div>
+        <div class="cta-link">CTA: checklist + assessment</div>
+      </div>
+    </div>
+    <h3>I wrote the checklist I wished existed when I started Complya.</h3>
+    <div class="post-label">Hook</div>
+    <div class="hook">I wrote the checklist I wished existed when I started Complya.</div>
+    <div class="post-label">Body</div>
+    <div class="body">
+      <p>If you're a Kenyan data controller or processor, here's what registering with ODPC actually requires — in plain language, no legalese:</p>
+      <ul>
+        <li>Who must register (and the misconception that small entities are exempt — they're not)</li>
+        <li>What documents you need on hand before you start the form</li>
+        <li>How to classify yourself as a controller vs processor (most companies get this wrong)</li>
+        <li>The annual renewal cadence — and what lapses trigger</li>
+        <li>The most common rejection reasons and how to avoid them</li>
+        <li>What registration does NOT cover (so you don't think you're done when you've just started)</li>
+      </ul>
+      <p>I packaged all of this into a single PDF. It's the document I wish someone had handed me when I first started looking at ODPC registration for our own company.</p>
+      <p>It's free. No email-gate tricks, no "book a demo" popup. Download, read, register.</p>
+      <p>If you want to go further after the checklist, our assessment tool at the link below gives you a full gap report across registration, governance, and data subject rights.</p>
+    </div>
+    <div class="post-label">CTA</div>
+    <p>Grab the ODPC Registration Checklist PDF — comment "CHECKLIST" or DM me and I'll send it over. Then run the assessment → assessment.bitverse.co.ke</p>
+  </article>
+
+</main>
+
+<footer>
+  <p><strong>Complya</strong> · A product by <a href="https://bitverse.co.ke">Bitverse</a> · Nairobi, Kenya</p>
+  <p><a href="index.html">Home</a> · <a href="checklist.html">Checklist PDF</a> · <a href="posts.html">LinkedIn Posts</a></p>
+</footer>
+
+<script>
+function copyPost(btn) {
+  const post = btn.closest('.post');
+  // Build a clean text version: hook + body + CTA, no UI chrome
+  const h3 = post.querySelector('h3').innerText;
+  const hook = post.querySelector('.hook').innerText;
+  const bodyParas = Array.from(post.querySelectorAll('.body p, .body li'))
+    .map(el => {
+      const tag = el.tagName.toLowerCase();
+      const txt = el.innerText;
+      return tag === 'li' ? '• ' + txt : txt;
+    })
+    .join('\n\n');
+  // Find CTA paragraph (the one right after the last .post-label)
+  const labels = post.querySelectorAll('.post-label');
+  const ctaLabel = labels[labels.length - 1];
+  const cta = ctaLabel.nextElementSibling ? ctaLabel.nextElementSibling.innerText : '';
+  const archetype = post.querySelector('.archetype').innerText;
+
+  const text = `${h3}\n\n[${archetype}]\n\n${hook}\n\n${bodyParas}\n\n${cta}`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerText = orig;
+      btn.classList.remove('copied');
+    }, 1800);
+  }).catch(() => {
+    btn.innerText = 'Copy failed';
+  });
+}
+</script>
+
+</body>
+</html>
