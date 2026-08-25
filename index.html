@@ -112,8 +112,11 @@
 
   .cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+  }
+  @media (max-width: 980px) {
+    .cards { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 700px) {
     .cards { grid-template-columns: 1fr; }
@@ -303,10 +306,23 @@
 
 <section class="container">
   <div class="section-label">Free downloads</div>
-  <h2>Two things you can use today.</h2>
+  <h2>Three things you can use today.</h2>
   <p class="lead">No email gate, no demo booking, no "book a call" popup. Just the documents and posts.</p>
 
   <div class="cards">
+    <a class="card" href="audit-playbook.html">
+      <div class="card-icon">🚶</div>
+      <h3>15-Minute Site Audit Playbook</h3>
+      <p>A one-page field card for the on-site visit. Five stages, eight red flags, one closing question. Print it, walk in, walk out with the gap list.</p>
+      <ul>
+        <li>Farmer onboarding, payment &amp; records, systems</li>
+        <li>8 red flags that are almost always there</li>
+        <li>How to close the visit without giving a pitch</li>
+        <li>Single A4 PDF + responsive web page</li>
+      </ul>
+      <span class="card-cta">Get the playbook →</span>
+    </a>
+
     <a class="card" href="checklist.html">
       <div class="card-icon">📋</div>
       <h3>ODPC Registration Checklist PDF</h3>

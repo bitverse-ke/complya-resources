@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dairy Processor Site Audit Playbook — Bitverse × Complya</title>
+<meta name="description" content="A 15-minute on-site walk that surfaces the policy and system gaps ODPC will find first. Built for dairy processors and high-volume personal-data handlers in Kenya.">
+<style>
+  /* ============================================================
+     FONTS — Bitverse/Complya type system
+     ============================================================ */
+  @font-face { font-family: "Playfair Display"; font-weight: 400; font-style: normal; src: url("fonts/Playfair-400.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: normal; src: url("fonts/Playfair-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: italic; src: url("fonts/Playfair-700-italic.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 900; font-style: normal; src: url("fonts/Playfair-900.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/Inter-400.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-500.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-600.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/Inter-700.ttf"); }
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #F8F4E9;
+    --cream: #EFE8D6;
+    --green: #0F3D2E;
+    --green-light: #1F5A45;
+    --accent: #C8964A;
+    --muted: #6b6b6b;
+    --line: #e3dac4;
+    --warn: #8B2E1F;
+    --warn-bg: #FBF1ED;
+  }
+
+  /* ============================================================
+     PRINT-DEFAULT — dense A4 single-page field card.
+     Everything below is what shows up in the PDF.
+     ============================================================ */
+  @page {
+    size: A4 portrait;
+    margin: 11mm 11mm 13mm 11mm;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 8.4pt;
+    line-height: 1.32;
+    color: var(--ink);
+    background: white;
+  }
+
+  /* Hide web-only blocks in print */
+  .web-only { display: none !important; }
+
+  /* Header strip */
+  .head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 2px solid var(--green);
+    padding-bottom: 5pt;
+    margin-bottom: 6pt;
+  }
+  .head .brand {
+    font-weight: 600;
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3pt;
+  }
+  .head h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 17pt;
+    line-height: 1.05;
+    color: var(--green);
+    margin: 0;
+  }
+  .head .meta {
+    text-align: right;
+    font-size: 7pt;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .head .meta strong { color: var(--ink); display: block; font-size: 8pt; }
+
+  .intro {
+    font-size: 8pt;
+    color: var(--ink);
+    background: var(--cream);
+    border-left: 3px solid var(--accent);
+    padding: 5pt 7pt;
+    margin-bottom: 6pt;
+  }
+
+  /* Two-column grid of stage cards */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4pt;
+    margin-bottom: 6pt;
+  }
+
+  .stage {
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: white;
+    padding: 4pt 6pt 5pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .stage .num {
+    display: inline-block;
+    background: var(--green);
+    color: var(--accent);
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 9pt;
+    padding: 0 4pt;
+    border-radius: 2px;
+    margin-right: 4pt;
+    vertical-align: 1pt;
+  }
+  .stage h2 {
+    display: inline;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 8.8pt;
+    color: var(--green);
+    letter-spacing: 0.01em;
+  }
+  .stage .time {
+    float: right;
+    font-size: 7pt;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .stage ul {
+    list-style: none;
+    padding: 0;
+    margin: 3pt 0 0;
+  }
+  .stage li {
+    padding: 1pt 0 1pt 9pt;
+    position: relative;
+    font-size: 7.9pt;
+  }
+  .stage li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 8pt;
+  }
+  .stage li b {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* Flags block — warning palette */
+  .flags {
+    background: var(--warn-bg);
+    border: 1px solid #e8c8bf;
+    border-left: 4px solid var(--warn);
+    border-radius: 3px;
+    padding: 5pt 7pt 6pt;
+    margin-bottom: 6pt;
+  }
+  .flags .label {
+    font-weight: 700;
+    font-size: 8pt;
+    color: var(--warn);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 3pt;
+  }
+  .flags ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: flag;
+    columns: 2;
+    column-gap: 12pt;
+  }
+  .flags li {
+    counter-increment: flag;
+    padding: 0.5pt 0 0.5pt 13pt;
+    position: relative;
+    font-size: 7.8pt;
+    break-inside: avoid;
+  }
+  .flags li::before {
+    content: counter(flag);
+    position: absolute;
+    left: 0;
+    top: 0.5pt;
+    width: 10pt;
+    height: 10pt;
+    background: var(--warn);
+    color: white;
+    font-weight: 700;
+    font-size: 6.5pt;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 10pt;
+  }
+
+  /* Closing question — callout */
+  .close {
+    background: var(--green);
+    color: white;
+    padding: 6pt 8pt;
+    border-radius: 3px;
+    margin-bottom: 6pt;
+  }
+  .close .label {
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 2pt;
+  }
+  .close .quote {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+  .close .note {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.75);
+    margin-top: 2pt;
+  }
+
+  /* CTA strip */
+  .cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4pt;
+    margin-bottom: 4pt;
+  }
+  .cta .box {
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 5pt 7pt;
+    background: var(--cream);
+  }
+  .cta .box strong {
+    display: block;
+    font-size: 7.5pt;
+    color: var(--green);
+    margin-bottom: 1pt;
+    letter-spacing: 0.04em;
+  }
+  .cta .box span {
+    font-size: 7.8pt;
+    color: var(--ink);
+  }
+
+  .foot {
+    padding-top: 4pt;
+    border-top: 1px solid var(--line);
+    font-size: 6.5pt;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============================================================
+     SCREEN — override print defaults and add web hero.
+     ============================================================ */
+  @media screen {
+    body {
+      background: var(--paper);
+      font-size: 11pt;
+      line-height: 1.6;
+      padding: 0 0 80px;
+    }
+    .print-only { display: none !important; }
+
+    .screen-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: flex-end;
+      background: #0a0a0a;
+      color: white;
+      overflow: hidden;
+    }
+    .screen-hero-bg {
+      position: absolute; inset: 0;
+      background: url("photos/back.jpg") center 35% / cover;
+      filter: brightness(0.55);
+    }
+    .screen-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,30,20,0.3) 0%, rgba(10,30,20,0.88) 80%, rgba(10,30,20,0.96) 100%);
+    }
+    .screen-hero-content {
+      position: relative;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 70px 24px 50px;
+      width: 100%;
+    }
+    .screen-hero .brand {
+      font-weight: 600;
+      font-size: 11pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .screen-hero h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 900;
+      font-size: clamp(30pt, 4.5vw, 46pt);
+      line-height: 1.05;
+      margin: 0 0 14px;
+    }
+    .screen-hero p.lead {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: rgba(255,255,255,0.88);
+      max-width: 640px;
+      margin: 0;
+    }
+
+    .content-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 50px 24px 0;
+    }
+
+    .intro {
+      font-size: 11.5pt;
+      background: var(--cream);
+      border-left: 4px solid var(--accent);
+      padding: 18px 22px;
+      margin-bottom: 40px;
+      border-radius: 0 3px 3px 0;
+    }
+    .grid { gap: 18px; margin-bottom: 36px; }
+    .stage {
+      padding: 22px 24px 24px;
+      border-radius: 4px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+    }
+    .stage .num {
+      font-size: 13pt;
+      padding: 2pt 7pt;
+    }
+    .stage h2 {
+      font-size: 13pt;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+    }
+    .stage .time { font-size: 9pt; }
+    .stage li { font-size: 11pt; padding: 4pt 0 4pt 18pt; }
+    .stage li::before { font-size: 11pt; }
+
+    .flags {
+      padding: 24px 28px;
+      border-radius: 4px;
+      margin-bottom: 36px;
+    }
+    .flags .label { font-size: 10pt; margin-bottom: 12px; }
+    .flags ol { columns: 1; }
+    .flags li { font-size: 11.5pt; padding: 6pt 0 6pt 28pt; }
+    .flags li::before { width: 18pt; height: 18pt; font-size: 9pt; line-height: 18pt; top: 5pt; }
+
+    .close {
+      padding: 28px 32px;
+      border-radius: 4px;
+      margin-bottom: 36px;
+    }
+    .close .label { font-size: 9pt; margin-bottom: 8px; }
+    .close .quote { font-size: 18pt; }
+    .close .note { font-size: 10pt; margin-top: 10px; }
+
+    .cta { grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 16px; }
+    .cta .box { padding: 18px 22px; }
+    .cta .box strong { font-size: 10pt; margin-bottom: 4px; }
+    .cta .box span { font-size: 11pt; }
+
+    .foot { margin-top: 36px; padding-top: 16px; font-size: 9pt; }
+
+    .section-label {
+      font-weight: 600;
+      font-size: 10pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    h2.section-title {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 26pt;
+      color: var(--green);
+      margin: 0 0 18px;
+      line-height: 1.1;
+    }
+
+    .topbar {
+      background: var(--green);
+      color: white;
+      padding: 10px 24px;
+      font-size: 9.5pt;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+    }
+    .topbar a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .topbar strong { color: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WEB-ONLY elements -->
+<div class="topbar web-only">
+  <span><strong>Complya Resources</strong> · A Bitverse product</span>
+  <span><a href="index.html">← Back to all resources</a></span>
+</div>
+
+<section class="screen-hero web-only">
+  <div class="screen-hero-bg"></div>
+  <div class="screen-hero-overlay"></div>
+  <div class="screen-hero-content">
+    <div class="brand">Complya · A Bitverse Product</div>
+    <h1>The 15-minute site audit that finds what ODPC finds first.</h1>
+    <p class="lead">A field playbook for dairy processors, SACCOs, and any high-volume data controller. Walk in with a printed copy, walk out with a gap list.</p>
+  </div>
+</section>
+
+<!-- PRINT-ONLY header -->
+<header class="head print-only">
+  <div>
+    <div class="brand">Complya · Bitverse · Site Audit Playbook</div>
+    <h1>The 15-minute walk that finds what ODPC finds first.</h1>
+  </div>
+  <div class="meta">
+    <strong>Dairy processors &amp; high-volume controllers</strong>
+    DPA 2019 · ODPC enforcement<br>
+    Free resource · <span style="color:var(--green);">bitverse.co.ke</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+<div class="intro">
+  Dairy processors hold personal data for every farmer in the supply network — IDs, KRA PINs, bank details, GPS, production records, increasingly biometrics. That's thousands of data subjects, all under ODPC's jurisdiction. This is the 15-minute walk that surfaces the policy and system gaps ODPC has been acting on in 2024–2025. Print it. Carry it. Tick as you go.
+</div>
+
+<!-- Web-only section title; print just flows -->
+<div class="web-only">
+  <div class="section-label">The walk · 15 minutes</div>
+  <h2 class="section-title">Five stages. Five minutes each.</h2>
+</div>
+
+<div class="grid">
+  <div class="stage">
+    <span class="time">5 min · stage 1</span>
+    <span class="num">01</span><h2>Farmer onboarding</h2>
+    <ul>
+      <li>Where does farmer data get captured? <b>(paper / Excel / app / kiosk)</b></li>
+      <li>What fields? <b>ID, KRA PIN, bank, GPS, biometric, photo, signatures</b></li>
+      <li>Is there a consent form? What does it actually say?</li>
+      <li>Does the farmer sign it, or is it a buried tick in the app?</li>
+      <li>Who sees the data? <b>(ask for the actual list)</b></li>
+      <li>Where is it stored? <b>(filing cabinet, shared drive, WhatsApp, phones)</b></li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">5 min · stage 2</span>
+    <span class="num">02</span><h2>Payment &amp; farm records</h2>
+    <ul>
+      <li>Who has access to farmer bank and KRA PIN details?</li>
+      <li>How are they transmitted to the bank or payment processor?</li>
+      <li>Production records: how long kept, where, who can delete?</li>
+      <li>GPS coordinates — who captures, who uses, who gets shared with?</li>
+      <li>Cross-system check: does the same farmer ID exist in 3+ places that don't talk? <b>(almost always yes)</b></li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">5 min · stage 3</span>
+    <span class="num">03</span><h2>Systems &amp; access</h2>
+    <ul>
+      <li>Ask to see the milk collection app live. <b>Take a screenshot.</b></li>
+      <li>Authentication: passwords, PINs, biometrics, shared logins?</li>
+      <li>Audit log: can you see who accessed farmer X last Tuesday?</li>
+      <li>Third-party processors: <b>agronomy, payroll, cloud host, biometric vendors</b> — DPAs in place?</li>
+      <li>Backup: where, encrypted, who can restore?</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">3 min · stage 4</span>
+    <span class="num">04</span><h2>Retention &amp; breach</h2>
+    <ul>
+      <li>Ask: <b>"What happens to farmer data when a farmer stops supplying?"</b> — most have no answer</li>
+      <li>Is there a written retention schedule?</li>
+      <li>Is there a breach response plan and incident register?</li>
+      <li>Has a breach ever been reported to ODPC? <b>(mandatory under Section 43)</b></li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">2 min · stage 5</span>
+    <span class="num">05</span><h2>Governance &amp; registration</h2>
+    <ul>
+      <li>Is the company registered with ODPC? <b>(check the public register)</b></li>
+      <li>Registered in the company name or a personal name?</li>
+      <li>Annual returns filed?</li>
+      <li>Is a DPO designated in writing? <b>(mandatory — Section 24)</b></li>
+      <li>Where is the Data Protection Policy, and when last reviewed?</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">prep · 5 min before</span>
+    <span class="num">06</span><h2>Before you walk in</h2>
+    <ul>
+      <li>Pull their ODPC registration — confirm certificate current, not lapsed</li>
+      <li>Check if annual returns filed <b>(most haven't)</b></li>
+      <li>Google their milk collection app or payment platform by name</li>
+    </ul>
+  </div>
+</div>
+
+<div class="flags">
+  <div class="label">8 red flags that are almost always there</div>
+  <ol>
+    <li>No ODPC registration — or in a personal name, not the company</li>
+    <li>Farmer data sitting on someone's laptop or shared via WhatsApp</li>
+    <li>Collection clerks using shared logins — no individual accountability</li>
+    <li>Consent is a tick-box, or buried in a supply contract under "terms"</li>
+    <li>No DPO designated in writing</li>
+    <li>Bank details sent via email or SMS in clear text</li>
+    <li>No defined process for what happens to data when the relationship ends</li>
+    <li>No breach response plan, no incident register, no Section 43 history</li>
+  </ol>
+</div>
+
+<div class="close">
+  <div class="label">How to close the visit</div>
+  <div class="quote">"If ODPC walked in tomorrow morning, what's the one thing you'd be most worried about them seeing?"</div>
+  <div class="note">Don't pitch. Their answer tells you exactly where the deal is — and what to price.</div>
+</div>
+
+<div class="cta">
+  <div class="box">
+    <strong>Free · self-serve</strong>
+    <span>Take the 8-minute DPO Readiness Assessment at <b>assessment.bitverse.co.ke</b> — concrete gap list, even if you don't work with us.</span>
+  </div>
+  <div class="box">
+    <strong>Working with Bitverse</strong>
+    <span>Registration, policies, farmer onboarding workflows, breach response, and system hardening under one engagement. <b>stephen@bitverse.co.ke</b></span>
+  </div>
+</div>
+
+<div class="foot">
+  Complya · A product by Bitverse Limited · Nairobi, Kenya · 2026 · Free to share with credit
+</div>
+
+</div><!-- /content-wrap -->
+
+</body>
+</html>
