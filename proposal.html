@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browns Co — Data Protection Compliance Proposal · Bitverse × Complya</title>
+<meta name="description" content="A 60-day engagement to register Browns Co with ODPC, install the operational policy layer, and review the data systems that touch farmer data. Fixed fee, three milestones.">
+<style>
+  /* ============================================================
+     FONTS — Bitverse/Complya type system
+     ============================================================ */
+  @font-face { font-family: "Playfair Display"; font-weight: 400; font-style: normal; src: url("fonts/Playfair-400.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: normal; src: url("fonts/Playfair-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: italic; src: url("fonts/Playfair-700-italic.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 900; font-style: normal; src: url("fonts/Playfair-900.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/Inter-400.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-500.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-600.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/Inter-700.ttf"); }
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #F8F4E9;
+    --cream: #EFE8D6;
+    --green: #0F3D2E;
+    --green-light: #1F5A45;
+    --accent: #C8964A;
+    --muted: #6b6b6b;
+    --line: #e3dac4;
+    --warn: #8B2E1F;
+    --warn-bg: #FBF1ED;
+  }
+
+  /* ============================================================
+     PRINT-DEFAULT — dense A4 single-page field card.
+     Everything below is what shows up in the PDF.
+     ============================================================ */
+  @page {
+    size: A4 portrait;
+    margin: 11mm 11mm 13mm 11mm;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 8.4pt;
+    line-height: 1.32;
+    color: var(--ink);
+    background: white;
+  }
+
+  /* Hide web-only blocks in print */
+  .web-only { display: none !important; }
+
+  /* Header strip */
+  .head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 2px solid var(--green);
+    padding-bottom: 5pt;
+    margin-bottom: 6pt;
+  }
+  .head .brand {
+    font-weight: 600;
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3pt;
+  }
+  .head h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 17pt;
+    line-height: 1.05;
+    color: var(--green);
+    margin: 0;
+  }
+  .head .meta {
+    text-align: right;
+    font-size: 7pt;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .head .meta strong { color: var(--ink); display: block; font-size: 8pt; }
+
+  .intro {
+    font-size: 8pt;
+    color: var(--ink);
+    background: var(--cream);
+    border-left: 3px solid var(--accent);
+    padding: 5pt 7pt;
+    margin-bottom: 6pt;
+  }
+
+  /* Two-column grid of stage cards */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4pt;
+    margin-bottom: 6pt;
+  }
+
+  .stage {
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: white;
+    padding: 4pt 6pt 5pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .stage .num {
+    display: inline-block;
+    background: var(--green);
+    color: var(--accent);
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 9pt;
+    padding: 0 4pt;
+    border-radius: 2px;
+    margin-right: 4pt;
+    vertical-align: 1pt;
+  }
+  .stage h2 {
+    display: inline;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 8.8pt;
+    color: var(--green);
+    letter-spacing: 0.01em;
+  }
+  .stage .time {
+    float: right;
+    font-size: 7pt;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .stage ul {
+    list-style: none;
+    padding: 0;
+    margin: 3pt 0 0;
+  }
+  .stage li {
+    padding: 1pt 0 1pt 9pt;
+    position: relative;
+    font-size: 7.9pt;
+  }
+  .stage li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 8pt;
+  }
+  .stage li b {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* Flags block — warning palette */
+  .flags {
+    background: var(--warn-bg);
+    border: 1px solid #e8c8bf;
+    border-left: 4px solid var(--warn);
+    border-radius: 3px;
+    padding: 5pt 7pt 6pt;
+    margin-bottom: 6pt;
+  }
+  .flags .label {
+    font-weight: 700;
+    font-size: 8pt;
+    color: var(--warn);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 3pt;
+  }
+  .flags ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: flag;
+    columns: 2;
+    column-gap: 12pt;
+  }
+  .flags li {
+    counter-increment: flag;
+    padding: 0.5pt 0 0.5pt 13pt;
+    position: relative;
+    font-size: 7.8pt;
+    break-inside: avoid;
+  }
+  .flags li::before {
+    content: counter(flag);
+    position: absolute;
+    left: 0;
+    top: 0.5pt;
+    width: 10pt;
+    height: 10pt;
+    background: var(--warn);
+    color: white;
+    font-weight: 700;
+    font-size: 6.5pt;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 10pt;
+  }
+
+  /* Closing question — callout */
+  .close {
+    background: var(--green);
+    color: white;
+    padding: 6pt 8pt;
+    border-radius: 3px;
+    margin-bottom: 6pt;
+  }
+  .close .label {
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 2pt;
+  }
+  .close .quote {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+  .close .note {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.75);
+    margin-top: 2pt;
+  }
+
+  /* CTA strip */
+  .cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4pt;
+    margin-bottom: 4pt;
+  }
+  .cta .box {
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 5pt 7pt;
+    background: var(--cream);
+  }
+  .cta .box strong {
+    display: block;
+    font-size: 7.5pt;
+    color: var(--green);
+    margin-bottom: 1pt;
+    letter-spacing: 0.04em;
+  }
+  .cta .box span {
+    font-size: 7.8pt;
+    color: var(--ink);
+  }
+
+  .foot {
+    padding-top: 4pt;
+    border-top: 1px solid var(--line);
+    font-size: 6.5pt;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============================================================
+     SCREEN — override print defaults and add web hero.
+     ============================================================ */
+  @media screen {
+    body {
+      background: var(--paper);
+      font-size: 11pt;
+      line-height: 1.6;
+      padding: 0 0 80px;
+    }
+    .print-only { display: none !important; }
+
+    .screen-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: flex-end;
+      background: #0a0a0a;
+      color: white;
+      overflow: hidden;
+    }
+    .screen-hero-bg {
+      position: absolute; inset: 0;
+      background: url("photos/back.jpg") center 35% / cover;
+      filter: brightness(0.55);
+    }
+    .screen-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,30,20,0.3) 0%, rgba(10,30,20,0.88) 80%, rgba(10,30,20,0.96) 100%);
+    }
+    .screen-hero-content {
+      position: relative;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 70px 24px 50px;
+      width: 100%;
+    }
+    .screen-hero .brand {
+      font-weight: 600;
+      font-size: 11pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .screen-hero h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 900;
+      font-size: clamp(30pt, 4.5vw, 46pt);
+      line-height: 1.05;
+      margin: 0 0 14px;
+    }
+    .screen-hero p.lead {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: rgba(255,255,255,0.88);
+      max-width: 640px;
+      margin: 0;
+    }
+
+    .content-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 50px 24px 0;
+    }
+
+    .intro {
+      font-size: 11.5pt;
+      background: var(--cream);
+      border-left: 4px solid var(--accent);
+      padding: 18px 22px;
+      margin-bottom: 40px;
+      border-radius: 0 3px 3px 0;
+    }
+    .grid { gap: 18px; margin-bottom: 36px; }
+    .stage {
+      padding: 22px 24px 24px;
+      border-radius: 4px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+    }
+    .stage .num {
+      font-size: 13pt;
+      padding: 2pt 7pt;
+    }
+    .stage h2 {
+      font-size: 13pt;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+    }
+    .stage .time { font-size: 9pt; }
+    .stage li { font-size: 11pt; padding: 4pt 0 4pt 18pt; }
+    .stage li::before { font-size: 11pt; }
+
+    .flags {
+      padding: 24px 28px;
+      border-radius: 4px;
+      margin-bottom: 36px;
+    }
+    .flags .label { font-size: 10pt; margin-bottom: 12px; }
+    .flags ol { columns: 1; }
+    .flags li { font-size: 11.5pt; padding: 6pt 0 6pt 28pt; }
+    .flags li::before { width: 18pt; height: 18pt; font-size: 9pt; line-height: 18pt; top: 5pt; }
+
+    .close {
+      padding: 28px 32px;
+      border-radius: 4px;
+      margin-bottom: 36px;
+    }
+    .close .label { font-size: 9pt; margin-bottom: 8px; }
+    .close .quote { font-size: 18pt; }
+    .close .note { font-size: 10pt; margin-top: 10px; }
+
+    .cta { grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 16px; }
+    .cta .box { padding: 18px 22px; }
+    .cta .box strong { font-size: 10pt; margin-bottom: 4px; }
+    .cta .box span { font-size: 11pt; }
+
+    .foot { margin-top: 36px; padding-top: 16px; font-size: 9pt; }
+
+    .section-label {
+      font-weight: 600;
+      font-size: 10pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    h2.section-title {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 26pt;
+      color: var(--green);
+      margin: 0 0 18px;
+      line-height: 1.1;
+    }
+
+    .topbar {
+      background: var(--green);
+      color: white;
+      padding: 10px 24px;
+      font-size: 9.5pt;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+    }
+    .topbar a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .topbar strong { color: white; }
+
+    /* ----- Mobile: tablet (≤980px) ----- */
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .cta { grid-template-columns: 1fr 1fr; }
+      .screen-hero h1 { font-size: clamp(24pt, 6vw, 36pt); }
+    }
+
+    /* ----- Mobile: phone (≤700px) ----- */
+    @media (max-width: 700px) {
+      .topbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        text-align: center;
+        padding: 10px 16px;
+      }
+      .screen-hero { min-height: 70vh; }
+      .screen-hero-content { padding: 90px 20px 40px; }
+      .screen-hero h1 { font-size: 28pt; line-height: 1.08; }
+      .screen-hero p.lead { font-size: 12pt; }
+
+      .content-wrap { padding: 36px 18px 0; }
+
+      .intro { font-size: 10.5pt; padding: 14px 16px; margin-bottom: 28px; }
+      .grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
+      .stage { padding: 16px 18px 18px; }
+      .stage h2 { font-size: 12pt; }
+      .stage li { font-size: 10.5pt; padding: 3pt 0 3pt 16pt; }
+      .stage .num { font-size: 12pt; padding: 1pt 6pt; }
+
+      .flags { padding: 18px 18px; margin-bottom: 28px; }
+      .flags .label { font-size: 9pt; margin-bottom: 10px; }
+      .flags ol { columns: 1; }
+      .flags li { font-size: 10.5pt; padding: 5pt 0 5pt 24pt; }
+      .flags li::before { width: 16pt; height: 16pt; font-size: 8pt; line-height: 16pt; top: 5pt; }
+
+      .close { padding: 22px 22px; margin-bottom: 28px; }
+      .close .label { font-size: 8pt; margin-bottom: 6px; }
+      .close .quote { font-size: 14pt; line-height: 1.25; }
+      .close .note { font-size: 9.5pt; }
+
+      .cta { grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+      .cta .box { padding: 14px 16px; }
+      .cta .box strong { font-size: 9pt; }
+      .cta .box span { font-size: 10.5pt; }
+
+      .section-label { font-size: 9pt; margin-bottom: 8px; }
+      h2.section-title { font-size: 20pt; margin: 0 0 14px; }
+
+      .foot { margin-top: 28px; padding-top: 14px; font-size: 8pt; }
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- WEB-ONLY elements -->
+<div class="topbar web-only">
+  <span><strong>Complya Resources</strong> · A Bitverse product</span>
+  <span><a href="index.html">← Back to all resources</a></span>
+</div>
+
+<section class="screen-hero web-only">
+  <div class="screen-hero-bg"></div>
+  <div class="screen-hero-overlay"></div>
+  <div class="screen-hero-content">
+    <div class="brand">Complya · A Bitverse Product · Proposal</div>
+    <h1>Browns Co — Data Protection compliance, scoped and priced.</h1>
+    <p class="lead">A 60-day engagement: ODPC registration, the operational policy layer, and a system-level risk review of the data you hold on every farmer in your network.</p>
+  </div>
+</section>
+
+<!-- PRINT-ONLY header -->
+<header class="head print-only">
+  <div>
+    <div class="brand">Complya · Bitverse · Proposal</div>
+    <h1>Browns Co — Data Protection compliance, scoped and priced.</h1>
+  </div>
+  <div class="meta">
+    <strong>Prepared for Browns Co</strong>
+    [Director's Name], Director<br>
+    <span style="color:var(--green);">bitverse.co.ke</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+<div class="intro">
+  <b>Dear [Director's Name],</b><br>
+  Thank you for the conversation. Based on what you shared about Browns Co's exposure — farmer data across the supply network, milk collection systems, payment flows, and the move into traceability — this proposal scopes a 60-day engagement to get Browns Co from current state to fully registered, audit-ready, and system-risk-clarified under the Data Protection Act, 2019. Fixed fee, three milestone payments, no surprises.
+</div>
+
+<!-- Web-only section title; print just flows -->
+<div class="web-only">
+  <div class="section-label">What we propose</div>
+  <h2 class="section-title">Three milestones. Three deliverables. Three payments.</h2>
+</div>
+
+<div class="grid">
+  <div class="stage">
+    <span class="time">Weeks 1–3</span>
+    <span class="num">01</span><h2>ODPC registration</h2>
+    <ul>
+      <li>Data audit &amp; classification — what personal data you hold, where, lawful basis, retention</li>
+      <li>ODPC controller registration — application, supporting filings, certificate secured</li>
+      <li>Statutory standing — registered in the company name, annual returns scheduled</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">Weeks 3–6</span>
+    <span class="num">02</span><h2>Policy layer + system risk review</h2>
+    <ul>
+      <li>Privacy policy, cookie policy, data retention schedule — board-grade, ODPC-aligned</li>
+      <li>Farmer onboarding consent forms + collection notices — used at intake, not buried</li>
+      <li>Breach response procedure, DPIA template, ROPA — ready for an inspector</li>
+      <li><b>System risk review:</b> milk collection app, payment system, farmer database, traceability platform — access controls, consent capture, audit logging, retention automation. <b>Reviewed, not rebuilt.</b></li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">Weeks 7–8</span>
+    <span class="num">03</span><h2>Sign-off &amp; ODPC submission</h2>
+    <ul>
+      <li>Staff training — 1 session, ops + IT teams</li>
+      <li>Walk-through with your designated DPO and ops lead</li>
+      <li>Final ODPC submission pack + handover</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">What you'll have at the end</span>
+    <span class="num">→</span><h2>Audit-ready posture</h2>
+    <ul>
+      <li>ODPC certificate current and in the company name</li>
+      <li>Policy pack that holds up under inspection</li>
+      <li>System risk report ranking privacy gaps by severity</li>
+      <li>Trained ops staff who can answer an inspector's first three questions</li>
+      <li><b>Estimated 60% reduction in ODPC-enforcement exposure</b> versus current state</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">Anchor</span>
+    <span class="num">!</span><h2>Why this is cheap insurance</h2>
+    <ul>
+      <li>Statutory exposure: KES 5M fine or 1% of annual turnover — whichever is higher</li>
+      <li>For Browns Co, fines alone are several multiples of this engagement fee</li>
+      <li>ODPC enforcement in 2024–2025 has accelerated against exactly this profile of controller</li>
+      <li>This fee is the cost of preventing the conversation we'd rather you not have with ODPC</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <span class="time">Out of scope (priced separately)</span>
+    <span class="num">—</span><h2>What's not in this engagement</h2>
+    <ul>
+      <li>System rebuilds — we review and recommend, your dev team (or ours on a separate quote) implements</li>
+      <li>Ongoing DPO retainer after the 60 days</li>
+      <li>Defence of an actual ODPC investigation if one is opened before this engagement completes</li>
+      <li>Legal counsel — we deliver the compliance artefacts, your lawyers review if needed</li>
+    </ul>
+  </div>
+</div>
+
+<div class="flags">
+  <div class="label">Pricing &amp; payment terms — three milestone payments</div>
+  <ol>
+    <li><b>Mobilization — 40% (KES 300,000).</b> Payable on signing. Covers data audit, ODPC application work, and project kick-off.</li>
+    <li><b>Mid-engagement — 40% (KES 300,000).</b> Payable on delivery of Milestone 2 (policy pack + system risk report). Typically week 5–6.</li>
+    <li><b>Sign-off — 20% (KES 150,000).</b> Payable on delivery of Milestone 3 (training + final ODPC submission). End of week 8.</li>
+    <li><b>Total fixed fee: KES 750,000.</b> Plus applicable taxes. No hourly billing. Scope changes priced by mutual agreement.</li>
+    <li><b>Timeline:</b> 60 calendar days from mobilization. Delays caused by Browns Co (system access, document provision, scheduling) extend timeline but not fee.</li>
+    <li><b>Validity:</b> This proposal is valid for 30 days from the date on the cover letter.</li>
+  </ol>
+</div>
+
+<div class="close">
+  <div class="label">To proceed</div>
+  <div class="quote">"Sign the engagement letter, pay the mobilization invoice, and we'll start the data audit within five working days."</div>
+  <div class="note">Reply to stephen@bitverse.co.ke with "proceed" and I'll send the engagement letter and invoice by end of day. Or book a 15-minute call to walk through any clause.</div>
+</div>
+
+<div class="cta">
+  <div class="box">
+    <strong>Engagement letter &amp; invoice</strong>
+    <span>Reply <b>"proceed"</b> to <b>stephen@bitverse.co.ke</b>. Engagement letter + mobilization invoice by end of day.</span>
+  </div>
+  <div class="box">
+    <strong>Questions or a walk-through?</strong>
+    <span>15 minutes on a call. I'll explain any clause, scope line, or pricing decision. <b>stephen@bitverse.co.ke</b> · bitverse.co.ke</span>
+  </div>
+</div>
+
+<div class="foot">
+  Complya · A product by Bitverse Limited · Nairobi, Kenya · 2026 · Proposal prepared for Browns Co · Confidential
+</div>
+
+</div><!-- /content-wrap -->
+
+</body>
+</html>

@@ -112,11 +112,11 @@
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
   }
-  @media (max-width: 980px) {
-    .cards { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 1180px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 700px) {
     .cards { grid-template-columns: 1fr; }
@@ -306,7 +306,7 @@
 
 <section class="container">
   <div class="section-label">Free downloads</div>
-  <h2>Three things you can use today.</h2>
+  <h2>Four things you can use today.</h2>
   <p class="lead">No email gate, no demo booking, no "book a call" popup. Just the documents and posts.</p>
 
   <div class="cards">
@@ -321,6 +321,19 @@
         <li>Single A4 PDF + responsive web page</li>
       </ul>
       <span class="card-cta">Get the playbook →</span>
+    </a>
+
+    <a class="card" href="proposal.html">
+      <div class="card-icon">📝</div>
+      <h3>Sample Compliance Proposal</h3>
+      <p>A live, scoped-and-priced proposal template for a 60-day ODPC registration + policy + system-risk-review engagement. Drop in a Director's name, send.</p>
+      <ul>
+        <li>3 milestones, 3 deliverables, 3 payments</li>
+        <li>Fixed fee (KES 750K example) with payment triggers</li>
+        <li>Out-of-scope, validity, timeline terms</li>
+        <li>Single A4 PDF + responsive web page</li>
+      </ul>
+      <span class="card-cta">See the proposal →</span>
     </a>
 
     <a class="card" href="checklist.html">
