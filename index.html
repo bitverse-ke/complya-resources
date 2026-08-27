@@ -112,11 +112,8 @@
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-  }
-  @media (max-width: 1180px) {
-    .cards { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 700px) {
     .cards { grid-template-columns: 1fr; }
@@ -162,7 +159,8 @@
     font-size: 11pt;
     color: var(--ink);
     margin: 0 0 20px;
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
   }
   .card ul {
     list-style: none;
@@ -306,7 +304,7 @@
 
 <section class="container">
   <div class="section-label">Free downloads</div>
-  <h2>Four things you can use today.</h2>
+  <h2>Five things you can use today.</h2>
   <p class="lead">No email gate, no demo booking, no "book a call" popup. Just the documents and posts.</p>
 
   <div class="cards">
@@ -347,6 +345,19 @@
         <li>Tear-off quick card with 6 steps</li>
       </ul>
       <span class="card-cta">Read the checklist →</span>
+    </a>
+
+    <a class="card" href="odpc-form-walkthrough.html">
+      <div class="card-icon">📑</div>
+      <h3>ODPC Portal Form Walkthrough</h3>
+      <p>Every field on the dataportal.odpc.go.ke register form, field by field — with a worked Bitverse Limited example filling in each one. Print the PDF as a reference; browse the web version with values pre-filled.</p>
+      <ul>
+        <li>All 10 portal steps, 50+ fields covered</li>
+        <li>REQUIRED chips, accepted formats, upload limits</li>
+        <li>Worked example: Bitverse Limited (Controller, ICT)</li>
+        <li>Free fee schedule + post-submit timeline</li>
+      </ul>
+      <span class="card-cta">Open the walkthrough →</span>
     </a>
 
     <a class="card" href="posts.html">

@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ODPC Data Controller Registration — The Portal Form, Field by Field</title>
+<meta name="description" content="Every field the ODPC Kenya data controller registration portal asks for, with constraints, hints, and a worked example using Bitverse Limited as the registered entity.">
+<style>
+  /* ============================================================
+     FONTS
+     ============================================================ */
+  @font-face { font-family: "Playfair Display"; font-weight: 400; font-style: normal; src: url("fonts/Playfair-400.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: normal; src: url("fonts/Playfair-700.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 700; font-style: italic; src: url("fonts/Playfair-700-italic.ttf"); }
+  @font-face { font-family: "Playfair Display"; font-weight: 900; font-style: normal; src: url("fonts/Playfair-900.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("fonts/Inter-400.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-500.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-600.ttf"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("fonts/Inter-700.ttf"); }
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #F8F4E9;
+    --cream: #EFE8D6;
+    --green: #0F3D2E;
+    --green-light: #1F5A45;
+    --accent: #C8964A;
+    --muted: #6b6b6b;
+    --line: #e3dac4;
+    --warn: #8B2E1F;
+    --warn-bg: #FBF1ED;
+    --example-bg: #EFF4F8;
+    --example-border: #6B8FAD;
+    --filled-bg: #F0F7F2;
+    --filled-border: #2E7D4F;
+  }
+
+  /* ============================================================
+     PRINT-DEFAULT — what shows up in the PDF.
+     Tight A4 portrait; section-based flow.
+     ============================================================ */
+  @page {
+    size: A4 portrait;
+    margin: 11mm 11mm 13mm 11mm;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 8.6pt;
+    line-height: 1.34;
+    color: var(--ink);
+    background: white;
+  }
+
+  /* In print, hide the WEB-ONLY (filled example) block entirely —
+     the PDF is the field-guide reference only. */
+  .web-only { display: none !important; }
+
+  /* Header strip */
+  .head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 2px solid var(--green);
+    padding-bottom: 5pt;
+    margin-bottom: 7pt;
+  }
+  .head .brand {
+    font-weight: 600;
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3pt;
+  }
+  .head h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 17pt;
+    line-height: 1.05;
+    color: var(--green);
+    margin: 0;
+  }
+  .head .meta {
+    text-align: right;
+    font-size: 7pt;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .head .meta strong { color: var(--ink); display: block; font-size: 8pt; }
+
+  .intro {
+    font-size: 8pt;
+    color: var(--ink);
+    background: var(--cream);
+    border-left: 3px solid var(--accent);
+    padding: 5pt 7pt;
+    margin-bottom: 7pt;
+  }
+
+  /* Section block (one per portal step) */
+  .section {
+    margin-bottom: 5pt;
+  }
+  .section .label {
+    display: flex;
+    align-items: baseline;
+    gap: 5pt;
+    border-bottom: 1.5pt solid var(--green);
+    padding-bottom: 2pt;
+    margin-bottom: 3pt;
+  }
+  .section .label .num {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 11pt;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .section .label h2 {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: var(--green);
+    margin: 0;
+    flex: 1;
+  }
+  .section .label .where {
+    font-size: 6.5pt;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Field table within a section — two columns: field, constraint/notes */
+  .fields {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 4pt;
+  }
+  .fields th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 6.8pt;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2pt 4pt 2pt 0;
+    border-bottom: 0.5pt solid var(--line);
+  }
+  .fields th:last-child { width: 65%; }
+  .fields td {
+    padding: 2pt 4pt 2pt 0;
+    vertical-align: top;
+    font-size: 7.7pt;
+    border-bottom: 0.5pt dotted var(--line);
+  }
+  .fields td.field-name {
+    font-weight: 600;
+    color: var(--green);
+    width: 35%;
+  }
+  .fields td .meta {
+    display: block;
+    font-size: 6.6pt;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 0.5pt;
+  }
+  .fields td .req {
+    display: inline-block;
+    background: var(--warn);
+    color: white;
+    font-size: 5.5pt;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.5pt 3pt;
+    border-radius: 1pt;
+    margin-left: 3pt;
+    vertical-align: 1pt;
+  }
+  .fields td code {
+    font-family: "Inter", monospace;
+    font-size: 7pt;
+    background: var(--paper);
+    padding: 0 2pt;
+    border-radius: 1pt;
+    color: var(--green);
+  }
+
+  /* Notes / mini-callout */
+  .note {
+    background: var(--cream);
+    border-left: 2pt solid var(--accent);
+    padding: 3pt 5pt;
+    font-size: 7.5pt;
+    margin: 3pt 0 4pt;
+  }
+  .note strong {
+    color: var(--green);
+    font-weight: 700;
+    display: block;
+    font-size: 6.8pt;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1pt;
+  }
+
+  /* Warnings block */
+  .warnings {
+    background: var(--warn-bg);
+    border: 1px solid #e8c8bf;
+    border-left: 3pt solid var(--warn);
+    border-radius: 2pt;
+    padding: 4pt 6pt 5pt;
+    margin-bottom: 6pt;
+  }
+  .warnings .label {
+    font-weight: 700;
+    font-size: 7.5pt;
+    color: var(--warn);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2pt;
+  }
+  .warnings ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: warn;
+    columns: 2;
+    column-gap: 10pt;
+  }
+  .warnings li {
+    counter-increment: warn;
+    padding: 0.5pt 0 0.5pt 11pt;
+    position: relative;
+    font-size: 7.4pt;
+    break-inside: avoid;
+  }
+  .warnings li::before {
+    content: counter(warn);
+    position: absolute;
+    left: 0;
+    top: 0.5pt;
+    width: 9pt;
+    height: 9pt;
+    background: var(--warn);
+    color: white;
+    font-weight: 700;
+    font-size: 6pt;
+    border-radius: 1pt;
+    text-align: center;
+    line-height: 9pt;
+  }
+
+  /* Closing */
+  .close {
+    background: var(--green);
+    color: white;
+    padding: 6pt 8pt;
+    border-radius: 2pt;
+    margin-bottom: 6pt;
+    page-break-inside: avoid;
+  }
+  .close .label {
+    font-size: 6.8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 2pt;
+  }
+  .close .quote {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 9.5pt;
+    line-height: 1.2;
+  }
+  .close .note {
+    background: transparent;
+    border-left: none;
+    padding: 0;
+    font-size: 7pt;
+    color: rgba(255,255,255,0.78);
+    margin-top: 3pt;
+  }
+
+  .foot {
+    padding-top: 4pt;
+    border-top: 1px solid var(--line);
+    font-size: 6.5pt;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============================================================
+     SCREEN — overrides for the WEB PAGE.
+     On web, the resource RE-FRAMES itself as a walkthrough of
+     a filled-out registration form, using Bitverse Limited
+     as the worked example entity. Same structure, different
+     presentation: each field is shown with its example value.
+     ============================================================ */
+  @media screen {
+    body {
+      background: var(--paper);
+      font-size: 16px;
+      line-height: 1.6;
+      padding: 0 0 80px;
+    }
+    .print-only { display: none !important; }
+
+    /* WEB TOPBAR */
+    .topbar {
+      background: var(--green);
+      color: white;
+      padding: 12px 24px;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .topbar strong { color: white; }
+
+    /* WEB HERO */
+    .screen-hero {
+      position: relative;
+      min-height: 56vh;
+      display: flex;
+      align-items: flex-end;
+      background: #0a0a0a;
+      color: white;
+      overflow: hidden;
+    }
+    .screen-hero-bg {
+      position: absolute; inset: 0;
+      background: url("photos/back.jpg") center 35% / cover;
+      filter: brightness(0.5);
+    }
+    .screen-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,30,20,0.3) 0%, rgba(10,30,20,0.88) 80%, rgba(10,30,20,0.96) 100%);
+    }
+    .screen-hero-content {
+      position: relative;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 80px 24px 60px;
+      width: 100%;
+    }
+    .screen-hero .brand {
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .screen-hero h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 900;
+      font-size: clamp(32px, 4.8vw, 52px);
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+    .screen-hero p.lead {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 18px;
+      color: rgba(255,255,255,0.88);
+      max-width: 660px;
+      margin: 0;
+    }
+
+    .content-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 56px 24px 0;
+    }
+
+    /* Web-only section banner above the form */
+    .web-banner {
+      background: var(--example-bg);
+      border-left: 4px solid var(--example-border);
+      border-radius: 0 4px 4px 0;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .web-banner strong {
+      display: block;
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* Web section header */
+    .section .label {
+      border-bottom: 2px solid var(--green);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+      gap: 12px;
+    }
+    .section .label .num {
+      font-size: 32px;
+    }
+    .section .label h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--green);
+    }
+    .section .label .where {
+      font-size: 11px;
+    }
+
+    /* Web: field "card" — replaces the print table with a label/value card stack.
+       Each .field is a row, with .field-name (label) and .field-value (the filled
+       answer) plus a small .field-meta line for hint/notes. */
+    .fields {
+      display: block;
+      border-collapse: separate;
+      margin-bottom: 16px;
+    }
+    .fields thead { display: none; }
+    .fields tbody, .fields tr, .fields td { display: block; width: auto; }
+    .fields tr {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    }
+    .fields td.field-name {
+      width: auto;
+      font-size: 15px;
+      color: var(--green);
+      border-bottom: none;
+      padding: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fields td.field-name .req {
+      font-size: 9px;
+      padding: 2px 6px;
+    }
+    .fields td.field-value {
+      font-size: 15px;
+      color: var(--ink);
+      padding: 4px 0 0 0;
+      border-bottom: none;
+      background: var(--filled-bg);
+      margin: 6px -10px -6px -10px;
+      padding: 10px 14px;
+      border-radius: 0 0 3px 3px;
+      border-top: 1px solid var(--filled-border);
+      font-family: "Inter", sans-serif;
+    }
+    .fields td.field-value.empty {
+      background: var(--paper);
+      color: var(--muted);
+      font-style: italic;
+      border-top-color: var(--line);
+    }
+    .fields td.field-value code {
+      background: white;
+      padding: 1px 6px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      color: var(--green);
+      font-size: 13px;
+    }
+    .fields td .meta {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* Field label has type badge (input / select / radio / file) */
+    .field-name .type {
+      display: inline-block;
+      background: var(--paper);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 2px;
+      border: 1px solid var(--line);
+    }
+    .field-name .type.radio { color: var(--green); border-color: var(--green); }
+    .field-name .type.file { color: var(--accent); border-color: var(--accent); }
+
+    /* Section block */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .note {
+      font-size: 15px;
+      padding: 14px 18px;
+      margin: 12px 0 18px;
+    }
+    .note strong { font-size: 11px; margin-bottom: 4px; }
+
+    .warnings {
+      padding: 22px 26px;
+      border-radius: 4px;
+      margin-bottom: 36px;
+    }
+    .warnings .label { font-size: 11px; margin-bottom: 12px; }
+    .warnings ol { columns: 1; }
+    .warnings li { font-size: 16px; padding: 8pt 0 8pt 26pt; }
+    .warnings li::before { width: 18px; height: 18px; font-size: 11px; line-height: 18px; top: 8px; }
+
+    .close {
+      padding: 32px 36px;
+      border-radius: 4px;
+      margin-bottom: 40px;
+    }
+    .close .label { font-size: 12px; margin-bottom: 10px; }
+    .close .quote { font-size: 24px; line-height: 1.25; }
+    .close .note { font-size: 14px; margin-top: 12px; }
+
+    .foot { margin-top: 36px; padding-top: 18px; font-size: 12px; }
+
+    /* ----- Mobile: tablet (≤980px) ----- */
+    @media (max-width: 980px) {
+      .screen-hero h1 { font-size: clamp(28px, 6vw, 42px); }
+      .section .label h2 { font-size: 24px; }
+    }
+
+    /* ----- Mobile: phone (≤700px) ----- */
+    @media (max-width: 700px) {
+      .topbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+      .screen-hero { min-height: 70vh; }
+      .screen-hero-content { padding: 90px 20px 40px; }
+      .screen-hero h1 { font-size: 32px; line-height: 1.1; }
+      .screen-hero p.lead { font-size: 16px; }
+
+      .content-wrap { padding: 40px 18px 0; }
+
+      .web-banner { padding: 18px 20px; font-size: 15px; margin-bottom: 32px; }
+
+      .section { margin-bottom: 40px; }
+      .section .label { gap: 10px; margin-bottom: 14px; }
+      .section .label .num { font-size: 26px; }
+      .section .label h2 { font-size: 21px; line-height: 1.15; }
+      .section .label .where { display: none; }
+
+      .fields tr { padding: 12px 14px; margin-bottom: 8px; }
+      .fields td.field-name { font-size: 14px; }
+      .fields td.field-value { font-size: 14px; margin: 6px -6px -4px -6px; padding: 9px 12px; }
+      .fields td .meta { font-size: 12px; }
+
+      .note { font-size: 14px; padding: 12px 14px; }
+      .warnings { padding: 18px 20px; margin-bottom: 28px; }
+      .warnings .label { font-size: 10px; }
+      .warnings li { font-size: 14px; padding: 7px 0 7px 24px; }
+      .warnings li::before { width: 16px; height: 16px; font-size: 10px; line-height: 16px; top: 7px; }
+
+      .close { padding: 24px 22px; margin-bottom: 28px; }
+      .close .label { font-size: 11px; }
+      .close .quote { font-size: 19px; }
+      .close .note { font-size: 13px; }
+
+      .foot { margin-top: 28px; padding-top: 14px; font-size: 11px; }
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     WEB TOPBAR + HERO  (hidden in print)
+     ============================================================ -->
+<div class="topbar web-only">
+  <span><strong>Complya Resources</strong> · A Bitverse product</span>
+  <span><a href="index.html">← Back to all resources</a></span>
+</div>
+
+<section class="screen-hero web-only">
+  <div class="screen-hero-bg"></div>
+  <div class="screen-hero-overlay"></div>
+  <div class="screen-hero-content">
+    <div class="brand">Complya · A Bitverse Product</div>
+    <h1>What every ODPC portal field looks like — with a real filled-in answer.</h1>
+    <p class="lead">A worked example of registering as a Data Controller in Kenya. The PDF version is the field-by-field reference. The page below shows Bitverse Limited as the registered entity.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRINT HEADER
+     ============================================================ -->
+<header class="head print-only">
+  <div>
+    <div class="brand">Complya · Bitverse · ODPC Portal Field Guide</div>
+    <h1>What the ODPC portal asks for, field by field.</h1>
+  </div>
+  <div class="meta">
+    <strong>For Data Controllers &amp; Data Processors in Kenya</strong>
+    DPA 2019 · ODPC enforcement<br>
+    Free resource · <span style="color:var(--green);">bitverse.co.ke</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+<!-- ============================================================
+     INTRO
+     ============================================================ -->
+<div class="intro print-only">
+  Registration under the Kenya Data Protection Act 2019 is filed at <b>dataportal.odpc.go.ke/Account/Register</b>. The portal is a single long form broken into ten steps. This document lists every field, what it accepts, and what's required to upload before you start. The web version shows the same fields filled in using Bitverse Limited as a worked example.
+</div>
+
+<div class="web-banner web-only">
+  <strong>Worked example — Bitverse Limited</strong>
+  Bitverse Limited is a Nairobi-based SaaS and agro e-commerce operator that processes personal data for farmer-suppliers, retail customers, employees, and SaaS tenants. Below is how the ODPC portal would be filled for the company — Data Controller registration in the Private / Institution category. Every field shows the answer Bitverse would submit, with the field name and a short hint for why.
+</div>
+
+<!-- ============================================================
+     STEP 1 — VERIFICATION (registration representative)
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">01</span>
+    <h2>Verification — who's filling the form</h2>
+    <span class="where">Portal step 1 · Resume-code supported</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Representative Name<span class="req">REQUIRED</span></td>
+        <td class="field-value">Stephen Muriithi</td>
+      </tr>
+      <tr>
+        <td class="field-name">Phone Number<span class="req">REQUIRED</span></td>
+        <td class="field-value">+254 7XX XXX XXX<span class="meta">Safaricom-format placeholder; the portal accepts the 7XXX prefix common to Kenyan mobile numbers.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Email Address<span class="req">REQUIRED</span></td>
+        <td class="field-value">stephen@bitverse.co.ke<span class="meta">CRITICAL — one email = one entity. Each subsidiary (Bitverse SaaS, plantain.co.ke, complya-app) needs its own separate email and separate registration. The portal will reject a duplicate email.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Institution</td>
+        <td class="field-value">Bitverse Limited</td>
+      </tr>
+      <tr>
+        <td class="field-name">Relation to Institution<span class="req">REQUIRED</span></td>
+        <td class="field-value">Director &amp; Founder<span class="meta">The portal placeholder reads: "indicate self if appropriate, or your role or relation to the institution."</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note print-only">
+    <strong>If you're resuming a half-done application</strong>
+    The first step doubles as a resume point — the radio switch toggles to "I have a Resume Code" instead, with a single Resume Code field. Don't start a new application if you've already begun one; you'll lose the in-progress data.
+  </div>
+</div>
+
+<!-- ============================================================
+     STEP 2 — BASIC DETAILS (entity)
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">02</span>
+    <h2>Basic Details — the entity being registered</h2>
+    <span class="where">Portal step 2 · Most error-prone step</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Data Handler Type<span class="req">REQUIRED</span></td>
+        <td class="field-value"><b>Data Controller</b><span class="meta">Two radio options: Data Controller or Data Processor. Controllers decide why and how data is processed (Bitverse — the company decides what farmer and customer data to collect). Processors act on a controller's instructions (e.g. a cloud host). If you do BOTH, file two separate applications and pay the fee twice.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Handler Category<span class="req">REQUIRED</span></td>
+        <td class="field-value"><b>Private</b><span class="meta">Three radio options: Government Institution / Private / Not-for-Profit Entities &amp; Religious Institutions. Determines the fee tier and which downstream fields appear (Government gets a State/County Department dropdown; Private gets the Private Type sub-radio).</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Private Type<span class="req">REQUIRED</span></td>
+        <td class="field-value"><b>Institution</b><span class="meta">Appears only if Handler Category = Private. Three sub-options: Institution / Individual / Others. Select Others only if you're a sole trader or unincorporated entity — most companies pick Institution.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Identification / BRS Registration Number<span class="req">REQUIRED</span></td>
+        <td class="field-value">PVT-XXXXXXXX<span class="meta">The portal looks up your company on eCitizen (Business Registration Service) and auto-fills the institution name. Use the BRS number from your Certificate of Incorporation — typically in the format PVT-XXXXXXX or LLP-XXXXXXX depending on entity type.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Institution/Individual Name<span class="req">REQUIRED</span></td>
+        <td class="field-value">Bitverse Limited<span class="meta">The exact legal name as incorporated. This is exactly how it will appear on your ODPC certificate — typos here mean a rejected certificate and a re-issue fee. Copy-paste from your Certificate of Incorporation.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Postal Address<span class="req">REQUIRED</span></td>
+        <td class="field-value">P.O. Box 12345 – 00100, Nairobi</td>
+      </tr>
+      <tr>
+        <td class="field-name">Country<span class="req">REQUIRED</span></td>
+        <td class="field-value">Kenya<span class="meta">Dropdown of all 218 countries. Default is alphabetical; scroll to K. Foreign-domiciled controllers register here too but may need an additional local representative.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">County<span class="req">REQUIRED</span></td>
+        <td class="field-value">Nairobi<span class="meta">Dropdown of all 47 Kenyan counties — uppercase by convention. If you operate across counties, pick your registered/head-office county.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Telephone Number</td>
+        <td class="field-value">+254 20 XXX XXXX</td>
+      </tr>
+      <tr>
+        <td class="field-name">State or County Department</td>
+        <td class="field-value"><i>(field does not appear — Private/Institution path)</i><span class="meta">This dropdown only appears if Handler Category = Government Institution. Options: County Department / County Corporation / State Department / State Corporation.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Legal Establishment<span class="req">REQUIRED</span></td>
+        <td class="field-value">Private Limited Company<span class="meta">Dropdown populated dynamically. Common options for Kenya: Sole Proprietorship, Partnership, Limited Liability Partnership, Private Limited Company, Public Limited Company, Society, Trust, Cooperative Society. Pick the one matching your Certificate of Incorporation.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Sector<span class="req">REQUIRED</span></td>
+        <td class="field-value">Information &amp; Communication<span class="meta">Dropdown populated dynamically. Bitverse maps to Information &amp; Communication (covers SaaS, e-commerce, fintech-adjacent). For dairy / agriculture pick Agriculture; for hospitals pick Health; for SACCOs pick Financial Services.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Sub Sector<span class="req">REQUIRED</span></td>
+        <td class="field-value">Software Development &amp; IT Services<span class="meta">Dropdown populates based on Sector. Common sub-sectors under Information &amp; Communication: Software Development, Telecommunications, Broadcasting, E-commerce, IT Services.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Establishment Document<span class="req">REQUIRED</span></td>
+        <td class="field-value">📎 Certificate-of-Incorporation.pdf (1.2 MB)<span class="meta">PDF only, max 8 MB. Must be the current establishment document — Certificate of Incorporation, Business Name Certificate, Partnership Deed, or founding instrument depending on entity type.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Street</td>
+        <td class="field-value">Westlands, Nairobi</td>
+      </tr>
+      <tr>
+        <td class="field-name">Building</td>
+        <td class="field-value">Bitverse House, 3rd Floor</td>
+      </tr>
+      <tr>
+        <td class="field-name">Office Number</td>
+        <td class="field-value">Office 3B</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================
+     STEP 3 — DATA PROTECTION OFFICER
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">03</span>
+    <h2>Data Protection Officer</h2>
+    <span class="where">Portal step 3 · Marked "Required" but conditionally so</span>
+  </div>
+
+  <div class="note print-only">
+    <strong>Conditional requirement</strong>
+    The portal labels this section "Required" but you only need to fill it if your institution has a dedicated DPO. Under Section 24 of the DPA 2019, designation of a DPO is mandatory for: (a) public bodies, (b) entities that process large-scale data, (c) entities whose core activity is systematic monitoring of data subjects. Most medium and large companies should designate one — Bitverse designates because farmer PII is large-scale.
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Name of the Officer<span class="req">REQUIRED</span></td>
+        <td class="field-value">[DPO's full name]<span class="meta">Internal employee, or external DPO-as-a-service. The DPO must be reachable on the email and phone below — ODPC may contact them directly for verification.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Email Address of the Officer<span class="req">REQUIRED</span></td>
+        <td class="field-value">dpo@bitverse.co.ke<span class="meta">Should be a role-based inbox (dpo@, privacy@), not a personal employee email — survives staff turnover without re-registration.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Phone Number of the Officer<span class="req">REQUIRED</span></td>
+        <td class="field-value">+254 7XX XXX XXX<span class="meta">With country-code dropdown (defaulted to +254).</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================
+     STEP 4 — PERSONAL DATA
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">04</span>
+    <h2>Personal Data — categories &amp; purposes</h2>
+    <span class="where">Portal step 4 · Repeatable group ("Add Personal Data Group")</span>
+  </div>
+
+  <div class="note print-only">
+    <strong>Repeatable group</strong>
+    You can add as many Personal Data Groups as you have data-subject categories. Each group has three fields: Category, Description, Purpose. Add one group per category of people you hold data on (employees, customers, suppliers, etc.). Each group should be specific enough that ODPC can understand what you hold and why.
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Category<span class="req">REQUIRED</span></td>
+        <td class="field-value">Farmer-suppliers<span class="meta">Placeholder reads: "E.g. employee, client, students, supplier, shareholder, etc." Free-text — use the label that matches your business language. Bitverse uses "Farmer-suppliers" because that's who they collect data from.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Description<span class="req">REQUIRED</span></td>
+        <td class="field-value">Names, national ID/passport numbers, KRA PINs, bank/mobile-money details, GPS coordinates of farms, production records, photos of deliveries, biometric (fingerprint) for collection verification.<span class="meta">List the specific data fields you hold in this category. The more specific, the better — ODPC wants to see you actually understand what you process.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose<span class="req">REQUIRED</span></td>
+        <td class="field-value">Procurement contracts, payment processing, supply forecasting, traceability compliance, and farm-extension support services.<span class="meta">State WHY you collect and process this data, tied to a real business purpose. Vague answers ("for business operations") get rejected.</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note print-only">
+    <strong>Repeat for every data-subject category</strong>
+    Bitverse would add separate groups for: farmer-suppliers, retail customers, SaaS tenants, employees, contractors, and shareholders. Each group needs its own Category, Description, and Purpose.
+  </div>
+</div>
+
+<!-- ============================================================
+     STEP 5 — SENSITIVE PERSONAL DATA
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">05</span>
+    <h2>Sensitive Personal Data</h2>
+    <span class="where">Portal step 5 · Conditional based on Yes/No</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Do you handle any sensitive data?<span class="req">REQUIRED</span></td>
+        <td class="field-value"><b>Yes</b><span class="meta">Two radio options: Yes / No. "Yes" unlocks the Sensitive Personal Data section. Sensitive data under Section 2 of the DPA includes: racial/ethnic origin, political opinions, religious beliefs, health data, sex life, sexual orientation, genetic data, biometric data, and — Kenya-specific — property details (incl. financials) and GPS location.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Racial or ethnic origin</td>
+        <td class="field-value empty">(not handled)</td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Property Details (incl. financials)</td>
+        <td class="field-value">Used for credit assessment of farmer-suppliers and recovery of outstanding procurement balances.<span class="meta">Kenya uniquely includes property/financial data under "sensitive" — this catches most fintechs, lenders, and SACCOs.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Religious, philosophical conscience, beliefs</td>
+        <td class="field-value empty">(not handled)</td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Marital status (incl. spouse &amp; children's details)</td>
+        <td class="field-value empty">(not handled)</td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Health status (physical or mental)</td>
+        <td class="field-value">Recorded for farmer wellness programmes and insurance underwriting.<span class="meta">Only fill if you actually process this. If yes, expect ODPC to ask for explicit consent records.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Sex / sexual orientation</td>
+        <td class="field-value empty">(not handled)</td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Biometric data</td>
+        <td class="field-value">Fingerprint verification of farmer-suppliers at milk/tea collection points to prevent proxy collection.<span class="meta">Biometrics are particularly sensitive — ODPC has flagged biometric collection programs multiple times. You need a clear lawful basis (typically consent + legitimate interest).</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — GPS location data</td>
+        <td class="field-value">Captured at farm registration to verify farm location, model supply zones, and prevent duplicate registrations.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Purpose — Genetic data</td>
+        <td class="field-value empty">(not handled)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================
+     STEP 6 — TRANSFER OF DATA
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">06</span>
+    <h2>Transfer of Data — does data leave Kenya?</h2>
+    <span class="where">Portal step 6 · Drives cross-border obligations</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Does your data reside outside Kenya?<span class="req">REQUIRED</span></td>
+        <td class="field-value"><b>Yes</b><span class="meta">Two radio options: Yes / No. Bitverse uses cloud infrastructure outside Kenya (e.g. AWS eu-central-1, Google Cloud us-central1) — the answer is Yes. If you self-host everything in Kenya and use no third-party processors abroad, answer No.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">List of Countries<span class="req">REQUIRED</span></td>
+        <td class="field-value">Germany · United States · Ireland · Singapore<span class="meta">Multi-select dropdown — add every jurisdiction you transfer to. Bitverse's hosting footprint drives this list. Be exhaustive: missing a country = non-compliance with Section 48 cross-border transfer rules.</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note print-only">
+    <strong>Section 48 cross-border requirements</strong>
+    For each transfer destination, you should have: (a) a contract with adequate data-protection clauses, (b) a documented assessment of the destination country's protection level, and (c) one of the lawful bases (consent, contract performance, etc.). ODPC expects to see this in your policy pack, not in the registration form.
+  </div>
+</div>
+
+<!-- ============================================================
+     STEP 7 — MEASURES OF PROTECTION (RISK MEASURES)
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">07</span>
+    <h2>Measures of Protection — risks &amp; safeguards</h2>
+    <span class="where">Portal step 7 · Repeatable group ("Add Risk Measure")</span>
+  </div>
+
+  <div class="note print-only">
+    <strong>Repeatable group — for each risk, declare the safeguard</strong>
+    The portal pre-loads 14 standard risk types. You select the ones applicable to your entity, and for each one you describe the safeguard measure in place. The 14 standard risks are listed below.
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Risk</th><th>Safeguard measure (description)</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Malware Attacks<span class="req">REQUIRED</span><br><span class="meta">Trojans, Spyware, Adware, Scareware, Ransomware, Botnets, Keyloggers, Worms, Rootkits, Viruses, Fileless malware.</span></td>
+        <td class="field-value">Endpoint protection on all staff devices (CrowdStrike Falcon); email gateway filtering (Proofpoint); monthly vulnerability scans; weekly OS patching SLA.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Password Theft</td>
+        <td class="field-value">Mandatory SSO via Okta with MFA (TOTP + WebAuthn); password manager (1Password) for shared service accounts; 90-day rotation policy.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Phishing Attacks</td>
+        <td class="field-value">Quarterly phishing simulations (KnowBe4); DMARC enforcement on bitverse.co.ke domain; mandatory phishing-awareness training for all staff handling payments.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Social Engineering (Baiting, Shoulder surfing, Dumpster diving)</td>
+        <td class="field-value">Clean-desk policy; visitor escort at all times; secure shredding bins; physical access control (badge-only) at office and data centre.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Ransomware</td>
+        <td class="field-value">Immutable off-site backups (AWS S3 Object Lock); 3-2-1 backup strategy; tested ransomware-recovery runbook; cyber-insurance policy.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Fraud (SIM swap, Embezzlement, Insider trading)</td>
+        <td class="field-value">Separation of duties on all payment flows; dual-approval for transactions &gt; KES 100,000; continuous audit log review; background checks on finance staff.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Cyberespionage</td>
+        <td class="field-value">Threat-intelligence feeds; EDR with behavioural analytics; principle of least privilege on production systems; no standing admin access.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Theft of Financial / Card Payment Data</td>
+        <td class="field-value">PCI-DSS-compliant payment processing (Stripe, no card data stored on Bitverse systems); tokenisation of all card references; P2PE at point of capture.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Cyber Extortion (Bribery)</td>
+        <td class="field-value">Whistleblower hotline; anti-bribery training; ethics policy signed by all staff; documented incident-response playbook.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Distributed Denial of Service</td>
+        <td class="field-value">Cloudflare DDoS protection in front of all public endpoints; rate-limiting on API; auto-scaling for traffic spikes.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Theft and Sale of Corporate Data</td>
+        <td class="field-value">DLP on email and endpoints (Microsoft Purview); encryption at rest (AES-256) on all data stores; access reviews quarterly.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Email and Internet Fraud</td>
+        <td class="field-value">SPF/DKIM/DMARC enforced; outbound payment verification via secondary channel (callback policy); clear desk for cheques and invoices.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Advanced Persistent Threats (incl. SQL injection, XSS, RFI)</td>
+        <td class="field-value">SAST/DAST in CI/CD (Snyk, OWASP ZAP); WAF (Cloudflare); annual third-party penetration test; secure SDLC policy.</td>
+      </tr>
+      <tr>
+        <td class="field-name">Cloud Attacks</td>
+        <td class="field-value">AWS/GCP security posture management (Wiz); IaC scanning (Checkov); principle of least privilege on cloud IAM; cloud configuration audit monthly.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note print-only">
+    <strong>Add custom risks</strong>
+    The 14 pre-loaded risks are common categories. If you have entity-specific risks not in the list (e.g. GPS spoofing at milk collection points, agent fraud in last-mile delivery), add custom entries — the portal allows free-text risk + safeguard pairs.
+  </div>
+</div>
+
+<!-- ============================================================
+     STEP 8 — EMPLOYEES, TURNOVER, FEES
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">08</span>
+    <h2>Employees &amp; Turnover — fee determination</h2>
+    <span class="where">Portal step 8 · Wrong band = refused application (Reg 10 &amp; 16)</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Previous Year Turnover<span class="req">REQUIRED</span></td>
+        <td class="field-value"><b>Above KES 50,000,000</b><span class="meta">Four dropdown bands: Below KES 5,000,000 / Between KES 5,000,001 and KES 50,000,000 / Above KES 50,000,000. Pick the band matching your most recent audited accounts (or KRA return for new entities). The portal uses this to compute your fee tier.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Number of Employees<span class="req">REQUIRED</span></td>
+        <td class="field-value"><b>Over 99</b><span class="meta">Four bands: 0–9 / 10–49 / 50–99 / Over 99. Counts both permanent and contract staff (not interns or pure consultants). Signed declaration required as upload.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Turnover Evidence<span class="req">REQUIRED</span></td>
+        <td class="field-value">📎 Audited-Accounts-2025.pdf (3.4 MB)<span class="meta">PDF, max 8 MB. Audited accounts for the most recent year, OR — for new entities — a signed revenue statement or KRA tax return. The document must show the figure consistent with the band you selected above.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Signed Declaration of Employee Numbers<span class="req">REQUIRED</span></td>
+        <td class="field-value">📎 Employee-Declaration.pdf (0.3 MB)<span class="meta">PDF, max 8 MB. A letter signed by a Director or Company Secretary attesting to the number of employees in the band selected above. Template available from ODPC's website.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Non-Exempted Categories<span class="req">REQUIRED if turnover ≤ 5M</span></td>
+        <td class="field-value"><i>(not applicable — turnover &gt; KES 50M)</i><span class="meta">14 listed categories — see warning box below. If your turnover is below KES 5M, you are exempted UNLESS you process data in any of these categories, in which case you must select all that apply. Above KES 5M, this section is not shown.</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="warnings">
+  <div class="label">8 common mistakes that get applications refused</div>
+  <ol>
+    <li>Wrong turnover band — picking Below 5M when audited accounts show 12M triggers re-classification and a fresh fee</li>
+    <li>Establishment document scanned at low resolution — ODPC wants a clear, machine-readable copy</li>
+    <li>Audited accounts not the most recent year — if your FY ends December, the December 2025 accounts must be uploaded before February 2026</li>
+    <li>Institution name typo on the form — must match the Certificate of Incorporation exactly</li>
+    <li>Personal email reused across multiple entities — the portal rejects duplicate emails</li>
+    <li>DPO details left blank when the entity is large-scale or public — Section 24 is mandatory</li>
+    <li>Sensitive Personal Data marked "No" when GPS or biometrics are clearly collected</li>
+    <li>Risk Measures submitted with empty safeguard fields — every selected risk needs a description</li>
+  </ol>
+</div>
+
+<!-- ============================================================
+     STEP 9 — OVERVIEW & CONFIRMATION
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">09</span>
+    <h2>Application Overview &amp; Confirmation</h2>
+    <span class="where">Portal step 9 · Review before submit</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Confirmation Checkbox<span class="req">REQUIRED</span></td>
+        <td class="field-value">☑ "I certify that the particulars provided are correct and complete and hereby apply to be registered as Data Controller or Data Processor."<span class="meta">Single checkbox — must be ticked to submit. Ticking constitutes a statutory declaration under Section 30 of the DPA. False declarations expose the signatory to personal liability.</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================
+     STEP 10 — LOGIN CREDENTIALS
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">10</span>
+    <h2>Login Credentials — portal account</h2>
+    <span class="where">Portal step 10 · Account created on submit</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Field</th><th>Constraint / Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Email<span class="req">REQUIRED</span></td>
+        <td class="field-value">stephen@bitverse.co.ke<span class="meta">Same email as Step 1 — used as the portal login after verification.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Confirm Email<span class="req">REQUIRED</span></td>
+        <td class="field-value">stephen@bitverse.co.ke<span class="meta">Must match exactly — copy-paste to avoid typos.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Password<span class="req">REQUIRED</span></td>
+        <td class="field-value">•••••••••••••••<span class="meta">Strong-password rules enforced: min 12 chars, mixed case, digit, special character. Use a generated password stored in the company password manager — do not use a personal password.</span></td>
+      </tr>
+      <tr>
+        <td class="field-name">Confirm Password<span class="req">REQUIRED</span></td>
+        <td class="field-value">•••••••••••••••</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================
+     FEE TABLE — what the bands cost
+     ============================================================ -->
+<div class="section">
+  <div class="label">
+    <span class="num">★</span>
+    <h2>Fee Schedule — what each band costs</h2>
+    <span class="where">Statutory fees · Per role · 2-year renewal</span>
+  </div>
+
+  <table class="fields">
+    <thead><tr><th>Employees &amp; Turnover Band</th><th>Fee</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="field-name">Micro / Small (1–50 staff, ≤ KES 5M turnover)</td>
+        <td class="field-value">KES 4,000 registration · KES 2,000 renewal</td>
+      </tr>
+      <tr>
+        <td class="field-name">Medium (51–99 staff, KES 5M–50M turnover)</td>
+        <td class="field-value">KES 16,000 registration · KES 9,000 renewal</td>
+      </tr>
+      <tr>
+        <td class="field-name">Large (&gt;99 staff, &gt; KES 50M turnover)</td>
+        <td class="field-value">KES 40,000 registration · KES 25,000 renewal</td>
+      </tr>
+      <tr>
+        <td class="field-name">Public entities (any size)</td>
+        <td class="field-value">KES 4,000 registration · KES 2,000 renewal</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note print-only">
+    <strong>Controller + Processor?</strong>
+    If you act as both Data Controller and Data Processor (e.g. a SaaS that processes customer data on behalf of tenants AND controls data about its own employees), you pay the fee twice — file two separate applications from the same dashboard.
+  </div>
+
+  <div class="note print-only">
+    <strong>How to pay</strong>
+    After submitting the application, ODPC emails you an invoice. Payment methods on the portal: M-Pesa (most common), bank transfer, or cheque. Pick one, generate the invoice only once (re-clicking regenerates the same invoice — don't pay the old one then pay the new one).
+  </div>
+</div>
+
+<!-- ============================================================
+     CLOSING + CTA
+     ============================================================ -->
+<div class="close">
+  <div class="label">What happens after you click submit</div>
+  <div class="quote">"ODPC reviews within 14 working days, then issues a registration certificate. The certificate is renewable every 2 years — file annual returns or you lapse."</div>
+  <div class="note">Section 33 of the DPA 2019: operating as a data controller without valid registration is a fine of up to KES 5 million or 1% of annual turnover (whichever is higher). Registration is the floor, not the ceiling — policies, DPIA, breach response, and a designated DPO are the other obligations.</div>
+</div>
+
+<div class="foot">
+  Complya · A product by Bitverse Limited · Nairobi, Kenya · 2026 · Free to share with credit
+</div>
+
+</div><!-- /content-wrap -->
+
+</body>
+</html>
